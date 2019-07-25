@@ -1,13 +1,8 @@
 <template>
   <v-layout row class="align-center layout px-4 pt-4 app--page-header">
     <div class="page-header-left">
-      <h3 class="pr-3">{{ $route.meta.title || '' }}</h3>
+      <h2 class="pr-3">{{ $route.meta.title || '' }}</h2>
     </div>
-    <v-breadcrumbs divider="-" :items="breadcrumbs">
-        <template v-slot:item="props">
-        <a :href="props.item.href" :class="[props.item.disabled && 'disabled']">{{ props.item.text}}</a>
-      </template>
-    </v-breadcrumbs>
     <v-spacer></v-spacer>
     <div class="page-header-right">
       <v-btn icon>
@@ -21,7 +16,7 @@
 export default {
   data() {
     return {
-      title: "Home",
+      title: "Welcome Admin",
       breadcrumbs: [
       ]
     }

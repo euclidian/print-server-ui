@@ -43,8 +43,8 @@ export const protectedRoute = [
       {
         path: "/dashboard",
         name: "Dashboard",
-        meta: { title: "Home", group: "apps", icon: "dashboard" },
-        component: () => import(/* webpackChunkName: "dashboard" */ "../views/Dashboard.vue")
+        meta: { title: "Welcome Admin", group: "apps", icon: "dashboard" },
+        component: () => import(/* webpackChunkName: "dashboard" */ "../views/list/Table.vue")
       },
 
       {
@@ -55,6 +55,7 @@ export const protectedRoute = [
       }
     ]
   },
+
 
   //list
   {

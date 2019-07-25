@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"chat-contact":"chat-contact","chat-messaging~dashboard":"chat-messaging~dashboard","chat-messaging":"chat-messaging","dashboard~list-widget":"dashboard~list-widget","list-widget":"list-widget","dashboard~statistic-widget":"dashboard~statistic-widget","statistic-widget":"statistic-widget","error-403":"error-403","errors-404":"errors-404","errors-500":"errors-500","login":"login","routes":"routes","social-widget":"social-widget","table":"table","vendors~chart-widget~dashboard":"vendors~chart-widget~dashboard","chart-widget~dashboard":"chart-widget~dashboard","chart-widget":"chart-widget","dashboard":"dashboard"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"chat-contact":"chat-contact","chat-messaging":"chat-messaging","error-403":"error-403","errors-404":"errors-404","errors-500":"errors-500","list-widget":"list-widget","login":"login","routes":"routes","social-widget":"social-widget","statistic-widget":"statistic-widget","table":"table","vendors~chart-widget":"vendors~chart-widget","chart-widget":"chart-widget"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -212,21 +212,6 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ThemeSettings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/ThemeSettings */ "./resources/js/components/dashboard/components/ThemeSettings.vue");
 /* harmony import */ var _event__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./event */ "./resources/js/components/dashboard/event.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -613,15 +598,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      title: "Home",
+      title: "Welcome Admin",
       breadcrumbs: []
     };
   },
@@ -1268,7 +1248,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.setting-fab[data-v-28b448cb] {\n  top: 50% !important;\n  right: 0;\n  border-radius: 0;\n}\n", ""]);
+exports.push([module.i, "\n.setting-fab[data-v-28b448cb] {\r\n  top: 50% !important;\r\n  right: 0;\r\n  border-radius: 0;\n}\r\n", ""]);
 
 // exports
 
@@ -1287,7 +1267,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "\n.split-bg[data-v-6009da3b] {\n  /* background-color: #3AA6B7; */\n  height: 50%;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  content: \"\";\n  z-index: 0;\n}\n", ""]);
+exports.push([module.i, "\n.split-bg[data-v-6009da3b] {\r\n  height: 50%;\r\n  width: 100%;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  content: \"\";\r\n  z-index: 0;\n}\r\n", ""]);
 
 // exports
 
@@ -1306,7 +1286,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "\n.page-wrapper[data-v-17c32adc] {\r\n  min-height: calc(100vh - 64px - 50px - 81px);\n}\r\n", ""]);
+exports.push([module.i, "\n.page-wrapper[data-v-17c32adc] {\n  min-height: calc(100vh - 64px - 50px - 81px);\n}\n", ""]);
 
 // exports
 
@@ -4249,31 +4229,10 @@ var render = function() {
     },
     [
       _c("div", { staticClass: "page-header-left" }, [
-        _c("h3", { staticClass: "pr-3" }, [
+        _c("h2", { staticClass: "pr-3" }, [
           _vm._v(_vm._s(_vm.$route.meta.title || ""))
         ])
       ]),
-      _vm._v(" "),
-      _c("v-breadcrumbs", {
-        attrs: { divider: "-", items: _vm.breadcrumbs },
-        scopedSlots: _vm._u([
-          {
-            key: "item",
-            fn: function(props) {
-              return [
-                _c(
-                  "a",
-                  {
-                    class: [props.item.disabled && "disabled"],
-                    attrs: { href: props.item.href }
-                  },
-                  [_vm._v(_vm._s(props.item.text))]
-                )
-              ]
-            }
-          }
-        ])
-      }),
       _vm._v(" "),
       _c("v-spacer"),
       _vm._v(" "),
@@ -50346,9 +50305,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_
     secondary: "#6A2B6F",
     accent: "#15173F",
     error: "#D83236",
-    info: "#2196F3",
+    info: "#426C95",
     success: "#4CAF50",
-    warning: "#FFC107"
+    warning: "#F4D550"
   },
   customProperties: true
 });
@@ -50440,12 +50399,12 @@ var protectedRoute = [{
     path: "/dashboard",
     name: "Dashboard",
     meta: {
-      title: "Home",
+      title: "Welcome Admin",
       group: "apps",
       icon: "dashboard"
     },
     component: function component() {
-      return Promise.all(/*! import() | dashboard */[__webpack_require__.e("vendors~chart-widget~dashboard"), __webpack_require__.e("dashboard~list-widget"), __webpack_require__.e("chat-messaging~dashboard"), __webpack_require__.e("chart-widget~dashboard"), __webpack_require__.e("dashboard~statistic-widget"), __webpack_require__.e("dashboard")]).then(__webpack_require__.bind(null, /*! ../views/Dashboard.vue */ "./resources/js/components/dashboard/views/Dashboard.vue"));
+      return __webpack_require__.e(/*! import() | dashboard */ "table").then(__webpack_require__.bind(null, /*! ../views/list/Table.vue */ "./resources/js/components/dashboard/views/list/Table.vue"));
     }
   }, {
     path: "/403",
@@ -50495,7 +50454,7 @@ var protectedRoute = [{
       title: "Chart Widget"
     },
     component: function component() {
-      return Promise.all(/*! import() | chart-widget */[__webpack_require__.e("vendors~chart-widget~dashboard"), __webpack_require__.e("chart-widget~dashboard"), __webpack_require__.e("chart-widget")]).then(__webpack_require__.bind(null, /*! ../views/widgets/Chart.vue */ "./resources/js/components/dashboard/views/widgets/Chart.vue"));
+      return Promise.all(/*! import() | chart-widget */[__webpack_require__.e("vendors~chart-widget"), __webpack_require__.e("chart-widget")]).then(__webpack_require__.bind(null, /*! ../views/widgets/Chart.vue */ "./resources/js/components/dashboard/views/widgets/Chart.vue"));
     }
   }, {
     path: "/widgets/list",
@@ -50504,7 +50463,7 @@ var protectedRoute = [{
       title: "List Widget"
     },
     component: function component() {
-      return Promise.all(/*! import() | list-widget */[__webpack_require__.e("dashboard~list-widget"), __webpack_require__.e("list-widget")]).then(__webpack_require__.bind(null, /*! ../views/widgets/List.vue */ "./resources/js/components/dashboard/views/widgets/List.vue"));
+      return __webpack_require__.e(/*! import() | list-widget */ "list-widget").then(__webpack_require__.bind(null, /*! ../views/widgets/List.vue */ "./resources/js/components/dashboard/views/widgets/List.vue"));
     }
   }, {
     path: "/widgets/social",
@@ -50522,7 +50481,7 @@ var protectedRoute = [{
       title: "Statistic Widget"
     },
     component: function component() {
-      return Promise.all(/*! import() | statistic-widget */[__webpack_require__.e("dashboard~statistic-widget"), __webpack_require__.e("statistic-widget")]).then(__webpack_require__.bind(null, /*! ../views/widgets/Statistic.vue */ "./resources/js/components/dashboard/views/widgets/Statistic.vue"));
+      return __webpack_require__.e(/*! import() | statistic-widget */ "statistic-widget").then(__webpack_require__.bind(null, /*! ../views/widgets/Statistic.vue */ "./resources/js/components/dashboard/views/widgets/Statistic.vue"));
     }
   }]
 }, //media
@@ -50560,7 +50519,7 @@ var protectedRoute = [{
     name: "ChatMessaging",
     props: true,
     components: function components() {
-      return Promise.all(/*! import() | chat-messaging */[__webpack_require__.e("chat-messaging~dashboard"), __webpack_require__.e("chat-messaging")]).then(__webpack_require__.bind(null, /*! ../components/chat/ChatMessaging.vue */ "./resources/js/components/dashboard/components/chat/ChatMessaging.vue"));
+      return __webpack_require__.e(/*! import() | chat-messaging */ "chat-messaging").then(__webpack_require__.bind(null, /*! ../components/chat/ChatMessaging.vue */ "./resources/js/components/dashboard/components/chat/ChatMessaging.vue"));
     }
   }, {
     path: "/chat/contact/:uuid?",

@@ -8,9 +8,9 @@ Vue.use(Vuetify, {
     secondary: "#6A2B6F",
     accent: "#15173F",
     error: "#D83236",
-    info: "#2196F3",
+    info: "#426C95",
     success: "#4CAF50",
-    warning: "#FFC107"
+    warning: "#F4D550"
   },
   customProperties: true
 })

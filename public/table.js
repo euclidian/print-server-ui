@@ -68,28 +68,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -98,9 +76,6 @@ __webpack_require__.r(__webpack_exports__);
       complex: {
         selected: [],
         headers: [{
-          text: "Avatar",
-          value: "avatar"
-        }, {
           text: "Name",
           value: "name"
         }, {
@@ -253,7 +228,7 @@ var render = function() {
             { attrs: { row: "", wrap: "" } },
             [
               _c("v-flex", { attrs: { sm12: "" } }, [
-                _c("h3", [_vm._v("Complex Table")])
+                _c("h3", [_vm._v("Complexity")])
               ]),
               _vm._v(" "),
               _c(
@@ -265,15 +240,17 @@ var render = function() {
                     [
                       _c(
                         "v-toolbar",
-                        { attrs: { card: "", color: "white" } },
+                        { attrs: { card: "", color: "primary" } },
                         [
                           _c("v-text-field", {
                             staticClass: "hidden-sm-and-down",
                             attrs: {
                               flat: "",
-                              solo: "",
+                              "solo-inverted": "",
+                              "background-color": "primary",
+                              color: "white",
                               "prepend-icon": "search",
-                              placeholder: "Type something",
+                              placeholder: "Search in Complexity",
                               "hide-details": ""
                             },
                             model: {
@@ -288,7 +265,11 @@ var render = function() {
                           _c(
                             "v-btn",
                             { attrs: { icon: "" } },
-                            [_c("v-icon", [_vm._v("filter_list")])],
+                            [
+                              _c("v-icon", { attrs: { color: "white" } }, [
+                                _vm._v("filter_list")
+                              ])
+                            ],
                             1
                           )
                         ],
@@ -302,7 +283,7 @@ var render = function() {
                         { staticClass: "pa-0" },
                         [
                           _c("v-data-table", {
-                            staticClass: "elevation-1",
+                            staticClass: "elevation-3",
                             attrs: {
                               headers: _vm.complex.headers,
                               search: _vm.search,
@@ -313,53 +294,13 @@ var render = function() {
                                 50,
                                 { text: "All", value: -1 }
                               ],
-                              "item-key": "name",
-                              "select-all": ""
+                              "item-key": "name"
                             },
                             scopedSlots: _vm._u([
                               {
                                 key: "items",
                                 fn: function(props) {
                                   return [
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("v-checkbox", {
-                                          attrs: {
-                                            primary: "",
-                                            "hide-details": ""
-                                          },
-                                          model: {
-                                            value: props.selected,
-                                            callback: function($$v) {
-                                              _vm.$set(props, "selected", $$v)
-                                            },
-                                            expression: "props.selected"
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c(
-                                          "v-avatar",
-                                          { attrs: { size: "32" } },
-                                          [
-                                            _c("img", {
-                                              attrs: {
-                                                src: props.item.avatar,
-                                                alt: ""
-                                              }
-                                            })
-                                          ]
-                                        )
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
                                     _c("td", [_vm._v(_vm._s(props.item.name))]),
                                     _vm._v(" "),
                                     _c("td", [
@@ -427,56 +368,6 @@ var render = function() {
                     ],
                     1
                   )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-flex", { attrs: { sm12: "" } }, [
-                _c("h3", [_vm._v("Basic Table")])
-              ]),
-              _vm._v(" "),
-              _c(
-                "v-flex",
-                { attrs: { lg12: "" } },
-                [
-                  _c("v-data-table", {
-                    staticClass: "elevation-1",
-                    attrs: {
-                      headers: _vm.basic.headers,
-                      items: _vm.basic.items,
-                      "hide-actions": ""
-                    },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "items",
-                        fn: function(props) {
-                          return [
-                            _c("td", [_vm._v(_vm._s(props.item.name))]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-xs-right" }, [
-                              _vm._v(_vm._s(props.item.calories))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-xs-right" }, [
-                              _vm._v(_vm._s(props.item.fat))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-xs-right" }, [
-                              _vm._v(_vm._s(props.item.carbs))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-xs-right" }, [
-                              _vm._v(_vm._s(props.item.protein))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-xs-right" }, [
-                              _vm._v(_vm._s(props.item.iron))
-                            ])
-                          ]
-                        }
-                      }
-                    ])
-                  })
                 ],
                 1
               )
