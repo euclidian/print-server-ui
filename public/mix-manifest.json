@@ -1,11 +1,11 @@
 {
     "/js/app.js": "/js/app.js?id=57a3b1cd052be63a9e8e",
     "/css/app.css": "/css/app.css?id=d41d8cd98f00b204e980",
-    "/js/main.js": "/js/main.js?id=ac15a3a73c02013c355c",
-    "/chart-widget.js": "/chart-widget.js?id=76bea31a8d668e7bc023",
+    "/js/main.js": "/js/main.js?id=ca5f82de80deb06255e6",
+    "/chart-widget.js": "/chart-widget.js?id=befc1a3406b60c92a568",
     "/chart-widget~dashboard.js": "/chart-widget~dashboard.js?id=e1a944b68a5d7c4113ed",
     "/chat-contact.js": "/chat-contact.js?id=bba18a3d43505e1aa0d1",
-    "/chat-messaging.js": "/chat-messaging.js?id=674d57397c03405bd301",
+    "/chat-messaging.js": "/chat-messaging.js?id=ba9706b12de16b33493a",
     "/chat-messaging~dashboard.js": "/chat-messaging~dashboard.js?id=9c91ec3b8639502d35d6",
     "/dashboard.js": "/dashboard.js?id=398eada6091dea33358e",
     "/dashboard~list-widget.js": "/dashboard~list-widget.js?id=21404efdb15f2203923c",
@@ -13,11 +13,12 @@
     "/error-403.js": "/error-403.js?id=b4076d1936aa3c4b0a52",
     "/errors-404.js": "/errors-404.js?id=cae702c0b687127684e2",
     "/errors-500.js": "/errors-500.js?id=81da55a2bf3e8b06a26c",
-    "/list-widget.js": "/list-widget.js?id=1f7410e9336aec5e9a9b",
-    "/login.js": "/login.js?id=5eea7e6e6769f3c096a1",
+    "/list-widget.js": "/list-widget.js?id=a3def69c0fba717d4203",
+    "/login.js": "/login.js?id=be9ba81dc2fd5859e3a4",
     "/routes.js": "/routes.js?id=f6f1706895ee38bc7087",
     "/social-widget.js": "/social-widget.js?id=c1d0e7014d760f1d9ff3",
-    "/statistic-widget.js": "/statistic-widget.js?id=2a618c9c95645cde398e",
-    "/table.js": "/table.js?id=19d8952fe6758a6d798e",
-    "/vendors~chart-widget~dashboard.js": "/vendors~chart-widget~dashboard.js?id=c88513f1844b8dc71657"
+    "/statistic-widget.js": "/statistic-widget.js?id=1d51abf94d12883dea2f",
+    "/table.js": "/table.js?id=9ad7d0f3db15d37a99d6",
+    "/vendors~chart-widget~dashboard.js": "/vendors~chart-widget~dashboard.js?id=c88513f1844b8dc71657",
+    "/vendors~chart-widget.js": "/vendors~chart-widget.js?id=2767f25deadf8311b4db"
 }

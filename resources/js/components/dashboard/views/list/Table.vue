@@ -3,22 +3,24 @@
     <v-container grid-list-xl fluid>
       <v-layout row wrap>
         <v-flex sm12>
-          <h3>Complex Table</h3>
+          <h3>Complexity</h3>
         </v-flex>
         <v-flex lg12>
           <v-card>
-            <v-toolbar card color="white">
+            <v-toolbar card color="primary">
               <v-text-field
                 flat
-                solo
+                solo-inverted
+                background-color="primary"
+                color="white"
                 prepend-icon="search"
-                placeholder="Type something"
+                placeholder="Search in Complexity"
                 v-model="search"
                 hide-details
                 class="hidden-sm-and-down"
               ></v-text-field>
               <v-btn icon>
-                <v-icon>filter_list</v-icon>
+                <v-icon color="white">filter_list</v-icon>
               </v-btn>
             </v-toolbar>
             <v-divider></v-divider>
@@ -28,20 +30,11 @@
                 :search="search"
                 :items="complex.items"
                 :rows-per-page-items="[10, 25, 50, { text: 'All', value: -1 }]"
-                class="elevation-1"
+                class="elevation-3"
                 item-key="name"
-                select-all
                 v-model="complex.selected"
               >
-                <template slot="items" slot-scope="props">
-                  <td>
-                    <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
-                  </td>
-                  <td>
-                    <v-avatar size="32">
-                      <img :src="props.item.avatar" alt="" />
-                    </v-avatar>
-                  </td>
+                <template slot="items" slot-scope="props" color="primary">
                   <td>{{ props.item.name }}</td>
                   <td>{{ props.item.email }}</td>
                   <td>{{ props.item.phone }}</td>
@@ -58,21 +51,6 @@
             </v-card-text>
           </v-card>
         </v-flex>
-        <v-flex sm12>
-          <h3>Basic Table</h3>
-        </v-flex>
-        <v-flex lg12>
-          <v-data-table :headers="basic.headers" :items="basic.items" hide-actions class="elevation-1">
-            <template slot="items" slot-scope="props">
-              <td>{{ props.item.name }}</td>
-              <td class="text-xs-right">{{ props.item.calories }}</td>
-              <td class="text-xs-right">{{ props.item.fat }}</td>
-              <td class="text-xs-right">{{ props.item.carbs }}</td>
-              <td class="text-xs-right">{{ props.item.protein }}</td>
-              <td class="text-xs-right">{{ props.item.iron }}</td>
-            </template>
-          </v-data-table>
-        </v-flex>
       </v-layout>
     </v-container>
   </div>
@@ -87,10 +65,6 @@ export default {
       complex: {
         selected: [],
         headers: [
-          {
-            text: "Avatar",
-            value: "avatar"
-          },
           {
             text: "Name",
             value: "name"
