@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import ProfileCard from "@/components/widgets/card/ProfileCard"
-import MenuCard from "@/components/widgets/card/MenuCard"
-import SettingCard from "@/components/widgets/card/SettingCard"
+import ProfileCard from "../components/widgets/card/ProfileCard"
+import MenuCard from "../components/widgets/card/MenuCard"
+import SettingCard from "../components/widgets/card/SettingCard"
 export default {
   components: {
     ProfileCard,

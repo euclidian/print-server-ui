@@ -2,7 +2,7 @@
   <div class="themeSetting">
     <v-toolbar color="blue">
       <v-toolbar-title>
-        Theme Settings
+        Theme Settingsnya
       </v-toolbar-title>
     </v-toolbar>
     <v-container>
@@ -56,7 +56,7 @@ import colors from "vuetify/es5/util/colors"
 export default {
   data() {
     return {
-      themeColor: "indigo",
+      themeColor: "",
       sideBarOption: "light",
       colors: colors
     }

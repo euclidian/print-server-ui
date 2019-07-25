@@ -55,8 +55,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       loading: false,
       model: {
-        username: "admin@isocked.com",
-        password: "password"
+        username: "",
+        password: ""
       }
     };
   },
@@ -92,7 +92,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-card",
-    { staticClass: "elevation-1 pa-3 login-card" },
+    { staticClass: "elevation-3 pa-5 login-card" },
     [
       _c(
         "v-card-text",
@@ -100,7 +100,7 @@ var render = function() {
           _c("div", { staticClass: "layout column align-center" }, [
             _c("img", {
               attrs: {
-                src: "/static/m.png",
+                src: __webpack_require__(/*! ../../assets/logo.svg */ "./resources/js/components/dashboard/assets/logo.svg"),
                 alt: "Vue Material Admin",
                 width: "120",
                 height: "120"
@@ -108,7 +108,7 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("h1", { staticClass: "flex my-4 primary--text" }, [
-              _vm._v("Material Admin Template")
+              _vm._v("Login")
             ])
           ]),
           _vm._v(" "),
@@ -118,8 +118,8 @@ var render = function() {
               _c("v-text-field", {
                 attrs: {
                   "append-icon": "person",
-                  name: "login",
-                  label: "Login",
+                  name: "username",
+                  label: "Username",
                   type: "text"
                 },
                 model: {
@@ -160,43 +160,8 @@ var render = function() {
         [
           _c(
             "v-btn",
-            { attrs: { icon: "" } },
-            [
-              _c("v-icon", { attrs: { color: "blue" } }, [
-                _vm._v("fa fa-facebook-square fa-lg")
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            { attrs: { icon: "" } },
-            [
-              _c("v-icon", { attrs: { color: "red" } }, [
-                _vm._v("fa fa-google fa-lg")
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            { attrs: { icon: "" } },
-            [
-              _c("v-icon", { attrs: { color: "light-blue" } }, [
-                _vm._v("fa fa-twitter fa-lg")
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("v-spacer"),
-          _vm._v(" "),
-          _c(
-            "v-btn",
             {
-              attrs: { block: "", color: "primary", loading: _vm.loading },
+              attrs: { block: "", color: "accent", loading: _vm.loading },
               on: { click: _vm.login }
             },
             [_vm._v("Login")]
@@ -212,6 +177,17 @@ var staticRenderFns = []
 render._withStripped = true
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/dashboard/assets/logo.svg":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/dashboard/assets/logo.svg ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/logo.svg?07d1e22e8cddd99a53037dc510221b7b";
 
 /***/ }),
 
