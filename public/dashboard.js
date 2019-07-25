@@ -1229,7 +1229,7 @@ var render = function() {
                       icon: "fa fa-facebook",
                       title: "100+",
                       "sub-title": "Likes",
-                      color: "indigo"
+                      color: "red"
                     }
                   })
                 ],
@@ -1245,7 +1245,7 @@ var render = function() {
                       icon: "fa fa-google",
                       title: "150+",
                       "sub-title": "Connections",
-                      color: "red"
+                      color: "indigo"
                     }
                   })
                 ],

@@ -21,6 +21,7 @@ export default {
 </script>
 <style scoped lang="css">
 .split-bg {
+  /* background-color: #3AA6B7; */
   height: 50%;
   width: 100%;
   position: absolute;
