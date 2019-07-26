@@ -13,7 +13,7 @@
 <script src="https://cdn.bootcss.com/echarts/4.0.4/echarts-en.min.js"></script>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/main.js') }}" defer></script>
+    <script src="{{ mix('js/main.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
