@@ -30,24 +30,48 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-  data: () => ({
-    loading: false,
-    model: {
-      username: "",
-      password: ""
-    }
-  }),
+    data: function(){
+        return{
+            loading: false,
+            model: {
+                username: "",
+                password: ""
+            },
+            resultnya: {
+                token_type: '',
+                expires_in: '',
+                access_token: '',
+                refresh_token: ''
+            }
+        }
+    },
 
-  methods: {
-    login() {
-      this.loading = true
-      // handle login
-      setTimeout(() => {
-        this.$router.push("/dashboard")
-      }, 1000)
+    methods: {
+        login: function() {
+
+            axios.post('/api/print/login', this.model)
+                .then(response => {
+                    this.resultnya = response.data;
+                    console.log(this.resultnya.token_type);
+                    console.log(this.resultnya.expires_in);
+                    console.log(this.resultnya.access_token);
+                    console.log(this.resultnya.refresh_token);
+                })
+                .catch(e => {
+                    this.errors.push(e);
+                })
+
+            if(this.resultnya != null){
+                this.loading = true
+                // handle login
+                setTimeout(() => {
+                    this.$router.push("/dashboard")
+                }, 1000)
+            }
+        }
     }
-  }
 }
 </script>
 <style scoped lang="css">
