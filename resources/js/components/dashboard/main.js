@@ -7,9 +7,11 @@ import axios from "axios"
 import "./registerServiceWorker"
 import "roboto-fontface/css/roboto/roboto-fontface.css"
 import "font-awesome/css/font-awesome.css"
+import VueSweetalert2 from 'vue-sweetalert2';
 
-Vue.use('vuetify', axios)
-
+Vue.use('vuetify');
+Vue.use(axios)
+Vue.use(VueSweetalert2);
 Vue.config.productionTip = false
 
 new Vue({

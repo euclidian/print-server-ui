@@ -1,22 +1,45 @@
 <template>
-    <v-card class="elevation-3 pa-5 login-card">
+    <v-card class="elevation-0 pa-3 login-card primary">
         <v-card-text>
             <div class="layout column align-center">
-                <img src="../../assets/logo.svg" alt="Vue Material Admin" width="120" height="120" />
-                <h1 class="flex my-4 primary--text">Login</h1>
+                <h3 class="flex white--text">WELCOME TO</h3>
+                <h1 class="flex mb-4 white--text font-weight-black">PRINT SERVER</h1>
             </div>
+            <v-alert
+                v-model="alert"
+                type="error"
+                close-text="Close Alert"
+                color="error"
+                dark
+                dismissible
+                class="mb-3"
+                transition="fade-transition"
+            >
+                Error<br><hr>
+                {{ error_type }}
+            </v-alert>
             <v-form>
                 <v-text-field
-                    append-icon="person"
+                    rounded
+                    class="font-weight-black"
+                    solo
+                    flat
+                    prepend-inner-icon="person"
                     name="username"
                     label="Username"
+                    placeholder="USERNAME"
                     type="text"
                     v-model="model.username"
                 ></v-text-field>
                 <v-text-field
-                    append-icon="lock"
+                    rounded
+                    class="font-weight-black"
+                    solo
+                    flat
+                    prepend-inner-icon="lock"
                     name="password"
                     label="Password"
+                    placeholder="PASSWORD"
                     id="password"
                     type="password"
                     v-model="model.password"
@@ -24,13 +47,12 @@
             </v-form>
         </v-card-text>
         <div class="login-btn">
-            <v-btn block color="accent" @click="login" :loading="loading">Login</v-btn>
+            <v-btn block class="font-weight-black" color="secondary" @click="login" :loading="loading" large>Login</v-btn>
         </div>
     </v-card>
 </template>
 
 <script>
-import axios from 'axios';
 export default {
     data: function(){
         return{
@@ -44,14 +66,15 @@ export default {
                 expires_in: '',
                 access_token: '',
                 refresh_token: ''
-            }
+            },
+            alert: false,
+            error_type: ''
         }
     },
 
     methods: {
         login: function() {
-
-            axios.post('/api/print/login', this.model)
+            this.$http.post('/api/print/login', this.model)
                 .then(response => {
                     this.resultnya = response.data;
                     console.log(this.resultnya.token_type);
@@ -62,14 +85,28 @@ export default {
                 .catch(e => {
                     this.errors.push(e);
                 })
+            if(this.model.password != "" && this.model.username != ""){
+                console.log(this.model);
+                this.$swal({
+                    text: 'Yeay..!',
+                    title: 'Login Success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    type: 'success'
+                });
+                if(this.resultnya != null){
+                    this.loading = true
+                    // handle login
 
-            if(this.resultnya != null){
-                this.loading = true
-                // handle login
-                setTimeout(() => {
-                    this.$router.push("/dashboard")
-                }, 1000)
+                    setTimeout(() => {
+                        this.$router.push("/dashboard")
+                    }, 1500)
+                }
+            }else{
+                this.alert = true;
+                this.error_type = "Please input Username and Password";
             }
+
         }
     }
 }

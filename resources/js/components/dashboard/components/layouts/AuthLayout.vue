@@ -1,15 +1,24 @@
 <template>
-  <v-app class="primary split-bg">
-    <v-content>
-      <v-container fluid fill-height>
-        <v-layout align-center justify-center>
-          <v-flex xs12 sm8 md4 lg4>
-            <router-view :key="$route.path"></router-view>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-content>
-  </v-app>
+    <v-app class="primary split-bg">
+        <v-container fluid fill-height>
+            <v-layout>
+                <v-container fluid fill-height>
+                        <v-layout align-center justify-center>
+                            <v-flex xs12 sm8 md8 lg8>
+                                <img src="/images/print-server-logo.svg" class="img-fluid" style="max-width:400px;">
+                            </v-flex>
+                        </v-layout>
+                </v-container>
+                <v-container fluid fill-height>
+                        <v-layout align-center justify-center>
+                            <v-flex xs12 sm8 md8 lg8>
+                                <router-view :key="$route.path"></router-view>
+                            </v-flex>
+                        </v-layout>
+                </v-container>
+            </v-layout>
+        </v-container>
+    </v-app>
 </template>
 
 <script>
@@ -20,13 +29,10 @@ export default {
 }
 </script>
 <style scoped lang="css">
-.split-bg {
-  height: 50%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: "";
-  z-index: 0;
-}
+    .split-bg {
+        background: url(/images/bg-login-lg.svg);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
 </style>

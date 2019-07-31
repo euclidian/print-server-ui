@@ -10,7 +10,8 @@
     <title>New Dashboard || Vue</title>
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CMaterial+Icons' rel="stylesheet">
-<script src="https://cdn.bootcss.com/echarts/4.0.4/echarts-en.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.0.4/echarts-en.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Scripts -->
     <script src="{{ mix('js/main.js') }}" defer></script>
