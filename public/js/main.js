@@ -2873,13 +2873,12 @@ exports.push([module.i, "\n.setting-fab[data-v-28b448cb] {\r\n  top: 50% !import
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var escape = __webpack_require__(/*! ../../../../../../node_modules/css-loader/lib/url/escape.js */ "./node_modules/css-loader/lib/url/escape.js");
 exports = module.exports = __webpack_require__(/*! ../../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n.split-bg[data-v-6009da3b] {\n    background: url(" + escape(__webpack_require__(/*! ../../imgs/bg-login-lg.svg */ "./resources/js/components/dashboard/imgs/bg-login-lg.svg")) + ");\n    background-position: center;\n    background-size: cover;\n    background-repeat: no-repeat;\n}\n", ""]);
+exports.push([module.i, "\n.split-bg[data-v-6009da3b] {\n    background: url(/images/bg-login-lg.svg);\n    background-position: center;\n    background-size: cover;\n    background-repeat: no-repeat;\n}\n", ""]);
 
 // exports
 
@@ -9058,9 +9057,7 @@ var render = function() {
                           _c("img", {
                             staticClass: "img-fluid",
                             staticStyle: { "max-width": "400px" },
-                            attrs: {
-                              src: __webpack_require__(/*! ../../imgs/print-server-logo.svg */ "./resources/js/components/dashboard/imgs/print-server-logo.svg")
-                            }
+                            attrs: { src: "/images/print-server-logo.svg" }
                           })
                         ]
                       )
@@ -54802,28 +54799,6 @@ var _this = undefined;
     _this.$message.success(msg);
   }
 }]);
-
-/***/ }),
-
-/***/ "./resources/js/components/dashboard/imgs/bg-login-lg.svg":
-/*!****************************************************************!*\
-  !*** ./resources/js/components/dashboard/imgs/bg-login-lg.svg ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/bg-login-lg.svg?72404d476ee623e45a9b010b28a0d943";
-
-/***/ }),
-
-/***/ "./resources/js/components/dashboard/imgs/print-server-logo.svg":
-/*!**********************************************************************!*\
-  !*** ./resources/js/components/dashboard/imgs/print-server-logo.svg ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/print-server-logo.svg?bb6c8ad328512c73991e4fc429275f3e";
 
 /***/ }),
 
