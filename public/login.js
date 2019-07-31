@@ -9,6 +9,8 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -63,6 +65,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -85,32 +88,32 @@ __webpack_require__.r(__webpack_exports__);
     login: function login() {
       var _this = this;
 
-      this.$http.post('/api/print/login', this.model).then(function (response) {
-        _this.resultnya = response.data;
-        console.log(_this.resultnya.token_type);
-        console.log(_this.resultnya.expires_in);
-        console.log(_this.resultnya.access_token);
-        console.log(_this.resultnya.refresh_token);
-      })["catch"](function (e) {
-        _this.errors.push(e);
-      });
-
       if (this.model.password != "" && this.model.username != "") {
-        console.log(this.model);
-        this.$swal({
-          text: 'Yeay..!',
-          title: 'Login Success',
-          showConfirmButton: false,
-          timer: 1500,
-          type: 'success'
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/print/login', this.model).then(function (response) {
+          _this.resultnya = response.data;
+          console.log(response);
+          console.log(_this.resultnya.token_type);
+          console.log(_this.resultnya.expires_in);
+          console.log(_this.resultnya.access_token);
+          console.log(_this.resultnya.refresh_token);
+        })["catch"](function (e) {
+          _this.errors.push(e);
         });
 
-        if (this.resultnya != null) {
+        if (this.resultnya.token_type != null) {
           this.loading = true; // handle login
 
           setTimeout(function () {
+            _this.$swal({
+              text: 'Yeay..!',
+              title: 'Login Success',
+              showConfirmButton: false,
+              timer: 1500,
+              type: 'success'
+            });
+
             _this.$router.push("/dashboard");
-          }, 1500);
+          }, 100);
         }
       } else {
         this.alert = true;
@@ -151,7 +154,9 @@ var render = function() {
             _vm._v(" "),
             _c(
               "h1",
-              { staticClass: "flex mb-4 white--text font-weight-black" },
+              {
+                staticClass: "flex mb-4 white--text font-weight-black display-2"
+              },
               [_vm._v("PRINT SERVER")]
             )
           ]),

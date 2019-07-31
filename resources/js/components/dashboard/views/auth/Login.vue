@@ -3,7 +3,7 @@
         <v-card-text>
             <div class="layout column align-center">
                 <h3 class="flex white--text">WELCOME TO</h3>
-                <h1 class="flex mb-4 white--text font-weight-black">PRINT SERVER</h1>
+                <h1 class="flex mb-4 white--text font-weight-black display-2">PRINT SERVER</h1>
             </div>
             <v-alert
                 v-model="alert"
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     data: function(){
         return{
@@ -74,9 +75,11 @@ export default {
 
     methods: {
         login: function() {
-            this.$http.post('/api/print/login', this.model)
+            if(this.model.password != "" && this.model.username != ""){
+                axios.post('/api/print/login', this.model)
                 .then(response => {
                     this.resultnya = response.data;
+                    console.log(response);
                     console.log(this.resultnya.token_type);
                     console.log(this.resultnya.expires_in);
                     console.log(this.resultnya.access_token);
@@ -85,22 +88,22 @@ export default {
                 .catch(e => {
                     this.errors.push(e);
                 })
-            if(this.model.password != "" && this.model.username != ""){
-                console.log(this.model);
-                this.$swal({
-                    text: 'Yeay..!',
-                    title: 'Login Success',
-                    showConfirmButton: false,
-                    timer: 1500,
-                    type: 'success'
-                });
-                if(this.resultnya != null){
+
+                if(this.resultnya.token_type != null){
                     this.loading = true
                     // handle login
-
+                    
                     setTimeout(() => {
-                        this.$router.push("/dashboard")
-                    }, 1500)
+                        this.$swal({
+                            text: 'Yeay..!',
+                            title: 'Login Success',
+                            showConfirmButton: false,
+                            timer:1500,
+                            type: 'success'
+                        }); 
+                        this.$router.push("/dashboard");
+                       
+                    }, 100)
                 }
             }else{
                 this.alert = true;

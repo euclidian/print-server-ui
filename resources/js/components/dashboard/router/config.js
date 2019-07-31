@@ -35,7 +35,7 @@ export const publicRoute = [
 
 export const protectedRoute = [
   {
-    path: "/",
+    path: "/dashboard",
     component: DefaultLayout,
     meta: { title: "Home", group: "apps", icon: "" },
     redirect: "/dashboard",
@@ -55,7 +55,21 @@ export const protectedRoute = [
       }
     ]
   },
-
+  {
+    path: "/",
+    component: AuthLayout,
+    meta: { title: "Login" },
+    redirect: "/auth/login",
+    hidden: true,
+    children: [
+      {
+        path: "login",
+        name: "login",
+        meta: { title: "Login" },
+        component: () => import(/* webpackChunkName: "login" */ "../views/auth/Login.vue")
+      }
+    ]
+  },
 
   //list
   {
