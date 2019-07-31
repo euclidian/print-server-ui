@@ -15,3 +15,12 @@
 @import url("css/routes.de263945.css");
 @import url("css/social-widget.23782652.css");
 
+@font-face{
+    font-family: 'Product-Sans-Bold';
+    src: url(fonts/ProductSansBold.ttf);
+}
+
+.font-pds-bold{
+    font-family: 'Product-Sans-Bold';
+}
+

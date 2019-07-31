@@ -9,8 +9,6 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -42,7 +40,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -56,14 +76,16 @@ __webpack_require__.r(__webpack_exports__);
         expires_in: '',
         access_token: '',
         refresh_token: ''
-      }
+      },
+      alert: false,
+      error_type: ''
     };
   },
   methods: {
     login: function login() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/print/login', this.model).then(function (response) {
+      this.$http.post('/api/print/login', this.model).then(function (response) {
         _this.resultnya = response.data;
         console.log(_this.resultnya.token_type);
         console.log(_this.resultnya.expires_in);
@@ -73,12 +95,26 @@ __webpack_require__.r(__webpack_exports__);
         _this.errors.push(e);
       });
 
-      if (this.resultnya != null) {
-        this.loading = true; // handle login
+      if (this.model.password != "" && this.model.username != "") {
+        console.log(this.model);
+        this.$swal({
+          text: 'Yeay..!',
+          title: 'Login Success',
+          showConfirmButton: false,
+          timer: 1500,
+          type: 'success'
+        });
 
-        setTimeout(function () {
-          _this.$router.push("/dashboard");
-        }, 1000);
+        if (this.resultnya != null) {
+          this.loading = true; // handle login
+
+          setTimeout(function () {
+            _this.$router.push("/dashboard");
+          }, 1500);
+        }
+      } else {
+        this.alert = true;
+        this.error_type = "Please input Username and Password";
       }
     }
   }
@@ -103,34 +139,64 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-card",
-    { staticClass: "elevation-3 pa-5 login-card" },
+    { staticClass: "elevation-0 pa-3 login-card primary" },
     [
       _c(
         "v-card-text",
         [
           _c("div", { staticClass: "layout column align-center" }, [
-            _c("img", {
-              attrs: {
-                src: __webpack_require__(/*! ../../assets/logo.svg */ "./resources/js/components/dashboard/assets/logo.svg"),
-                alt: "Vue Material Admin",
-                width: "120",
-                height: "120"
-              }
-            }),
+            _c("h3", { staticClass: "flex white--text" }, [
+              _vm._v("WELCOME TO")
+            ]),
             _vm._v(" "),
-            _c("h1", { staticClass: "flex my-4 primary--text" }, [
-              _vm._v("Login")
-            ])
+            _c(
+              "h1",
+              { staticClass: "flex mb-4 white--text font-weight-black" },
+              [_vm._v("PRINT SERVER")]
+            )
           ]),
+          _vm._v(" "),
+          _c(
+            "v-alert",
+            {
+              staticClass: "mb-3",
+              attrs: {
+                type: "error",
+                "close-text": "Close Alert",
+                color: "error",
+                dark: "",
+                dismissible: "",
+                transition: "fade-transition"
+              },
+              model: {
+                value: _vm.alert,
+                callback: function($$v) {
+                  _vm.alert = $$v
+                },
+                expression: "alert"
+              }
+            },
+            [
+              _vm._v("\n            Error"),
+              _c("br"),
+              _c("hr"),
+              _vm._v("\n            " + _vm._s(_vm.error_type) + "\n        ")
+            ]
+          ),
           _vm._v(" "),
           _c(
             "v-form",
             [
               _c("v-text-field", {
+                staticClass: "font-weight-black",
                 attrs: {
-                  "append-icon": "person",
+                  rounded: "",
+                  solo: "",
+                  flat: "",
+                  "prepend-inner-icon": "person",
                   name: "username",
                   label: "Username",
+                  placeholder: "USERNAME",
                   type: "text"
                 },
                 model: {
@@ -143,10 +209,15 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("v-text-field", {
+                staticClass: "font-weight-black",
                 attrs: {
-                  "append-icon": "lock",
+                  rounded: "",
+                  solo: "",
+                  flat: "",
+                  "prepend-inner-icon": "lock",
                   name: "password",
                   label: "Password",
+                  placeholder: "PASSWORD",
                   id: "password",
                   type: "password"
                 },
@@ -172,7 +243,13 @@ var render = function() {
           _c(
             "v-btn",
             {
-              attrs: { block: "", color: "accent", loading: _vm.loading },
+              staticClass: "font-weight-black",
+              attrs: {
+                block: "",
+                color: "secondary",
+                loading: _vm.loading,
+                large: ""
+              },
               on: { click: _vm.login }
             },
             [_vm._v("Login")]
@@ -188,17 +265,6 @@ var staticRenderFns = []
 render._withStripped = true
 
 
-
-/***/ }),
-
-/***/ "./resources/js/components/dashboard/assets/logo.svg":
-/*!***********************************************************!*\
-  !*** ./resources/js/components/dashboard/assets/logo.svg ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/logo.svg?07d1e22e8cddd99a53037dc510221b7b";
 
 /***/ }),
 
