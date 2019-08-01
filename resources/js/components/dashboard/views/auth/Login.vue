@@ -87,27 +87,27 @@ export default {
                     console.log(this.result.expires_in);
                     console.log(this.result.access_token);
                     console.log(this.result.refresh_token);
-                })
-                .catch(e => {
-                    this.loading = true;
-                    this.btn_disabled = true;
-                    this.errors.push(e);
-                })
 
-                if(this.result.token_type != null){
-                    // handle login
-                    this.$router.push("/dashboard");
-                    this.$swal({
+                    if(this.result.token_type != null){
+                        // handle login
+                        this.$router.push("/dashboard");
+                        this.$swal({
                             text: 'Yeay..!',
                             title: 'Login Success',
                             showConfirmButton: false,
                             timer:1500,
                             type: 'success'
                         });
-                }else{
+                    }
+                })
+                .catch(e => {
                     this.alert = true;
                     this.error_type = "Username or Password are Incorrect";
-                }
+                    this.loading = false;
+                    this.btn_disabled = false;
+                    this.errors.push(e);
+                })
+
             }else{
                 this.alert = true;
                 this.error_type = "Please input Username and Password";

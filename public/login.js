@@ -99,24 +99,27 @@ __webpack_require__.r(__webpack_exports__);
           console.log(_this.result.expires_in);
           console.log(_this.result.access_token);
           console.log(_this.result.refresh_token);
+
+          if (_this.result.token_type != null) {
+            // handle login
+            _this.$router.push("/dashboard");
+
+            _this.$swal({
+              text: 'Yeay..!',
+              title: 'Login Success',
+              showConfirmButton: false,
+              timer: 1500,
+              type: 'success'
+            });
+          }
         })["catch"](function (e) {
+          _this.alert = true;
+          _this.error_type = "Username or Password are Incorrect";
+          _this.loading = false;
+          _this.btn_disabled = false;
+
           _this.errors.push(e);
         });
-
-        if (this.result.token_type != null) {
-          // handle login
-          this.$router.push("/dashboard");
-          this.$swal({
-            text: 'Yeay..!',
-            title: 'Login Success',
-            showConfirmButton: false,
-            timer: 1500,
-            type: 'success'
-          });
-        } else {
-          this.alert = true;
-          this.error_type = "Username or Password are Incorrect";
-        }
       } else {
         this.alert = true;
         this.error_type = "Please input Username and Password";
