@@ -2,21 +2,6 @@ import { AuthLayout, DefaultLayout, ChatLayout } from "../components/layouts"
 
 export const publicRoute = [
   { path: "*", component: () => import(/* webpackChunkName: "errors-404" */ "../views/error/NotFound.vue") },
-  {
-    path: "/auth",
-    component: AuthLayout,
-    meta: { title: "Login" },
-    redirect: "/auth/login",
-    hidden: true,
-    children: [
-      {
-        path: "login",
-        name: "login",
-        meta: { title: "Login" },
-        component: () => import(/* webpackChunkName: "login" */ "../views/auth/Login.vue")
-      }
-    ]
-  },
 
   {
     path: "/404",
@@ -59,7 +44,7 @@ export const protectedRoute = [
     path: "/",
     component: AuthLayout,
     meta: { title: "Login" },
-    redirect: "/auth/login",
+    redirect: "/login",
     hidden: true,
     children: [
       {

@@ -54937,24 +54937,6 @@ var publicRoute = [{
     return __webpack_require__.e(/*! import() | errors-404 */ "errors-404").then(__webpack_require__.bind(null, /*! ../views/error/NotFound.vue */ "./resources/js/components/dashboard/views/error/NotFound.vue"));
   }
 }, {
-  path: "/auth",
-  component: _components_layouts__WEBPACK_IMPORTED_MODULE_0__["AuthLayout"],
-  meta: {
-    title: "Login"
-  },
-  redirect: "/auth/login",
-  hidden: true,
-  children: [{
-    path: "login",
-    name: "login",
-    meta: {
-      title: "Login"
-    },
-    component: function component() {
-      return __webpack_require__.e(/*! import() | login */ "login").then(__webpack_require__.bind(null, /*! ../views/auth/Login.vue */ "./resources/js/components/dashboard/views/auth/Login.vue"));
-    }
-  }]
-}, {
   path: "/404",
   name: "404",
   meta: {
@@ -55010,7 +54992,7 @@ var protectedRoute = [{
   meta: {
     title: "Login"
   },
-  redirect: "/auth/login",
+  redirect: "/login",
   hidden: true,
   children: [{
     path: "login",
