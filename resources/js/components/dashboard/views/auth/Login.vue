@@ -3,7 +3,7 @@
         <v-card-text>
             <div class="layout column align-center">
                 <h3 class="flex white--text">WELCOME TO</h3>
-                <h1 class="flex mb-4 white--text font-weight-black">PRINT SERVER</h1>
+                <h1 class="flex mb-4 white--text font-weight-black display-2">PRINT SERVER</h1>
             </div>
             <v-alert
                 v-model="alert"
@@ -47,12 +47,13 @@
             </v-form>
         </v-card-text>
         <div class="login-btn">
-            <v-btn block class="font-weight-black" color="secondary" @click="login" :loading="loading" large>Login</v-btn>
+            <v-btn block class="font-weight-black" color="secondary" @click="login" :loading="loading" large :disabled="btn_disabled">Login</v-btn>
         </div>
     </v-card>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     data: function(){
         return{
@@ -61,47 +62,52 @@ export default {
                 username: "",
                 password: ""
             },
-            resultnya: {
+            result: {
                 token_type: '',
                 expires_in: '',
                 access_token: '',
                 refresh_token: ''
             },
             alert: false,
-            error_type: ''
+            error_type: '',
+            btn_disabled: false
         }
     },
 
     methods: {
         login: function() {
-            this.$http.post('/api/print/login', this.model)
+            if(this.model.password != "" && this.model.username != ""){
+                this.loading = true;
+                this.btn_disabled = true;
+                axios.post('/api/print/login', this.model)
                 .then(response => {
-                    this.resultnya = response.data;
-                    console.log(this.resultnya.token_type);
-                    console.log(this.resultnya.expires_in);
-                    console.log(this.resultnya.access_token);
-                    console.log(this.resultnya.refresh_token);
+                    this.result = response.data;
+                    console.log(response);
+                    console.log(this.result.token_type);
+                    console.log(this.result.expires_in);
+                    console.log(this.result.access_token);
+                    console.log(this.result.refresh_token);
+
+                    if(this.result.token_type != null){
+                        // handle login
+                        this.$router.push("/dashboard");
+                        this.$swal({
+                            text: 'Yeay..!',
+                            title: 'Login Success',
+                            showConfirmButton: false,
+                            timer:1500,
+                            type: 'success'
+                        });
+                    }
                 })
                 .catch(e => {
+                    this.alert = true;
+                    this.error_type = "Username or Password are Incorrect";
+                    this.loading = false;
+                    this.btn_disabled = false;
                     this.errors.push(e);
                 })
-            if(this.model.password != "" && this.model.username != ""){
-                console.log(this.model);
-                this.$swal({
-                    text: 'Yeay..!',
-                    title: 'Login Success',
-                    showConfirmButton: false,
-                    timer: 1500,
-                    type: 'success'
-                });
-                if(this.resultnya != null){
-                    this.loading = true
-                    // handle login
 
-                    setTimeout(() => {
-                        this.$router.push("/dashboard")
-                    }, 1500)
-                }
             }else{
                 this.alert = true;
                 this.error_type = "Please input Username and Password";

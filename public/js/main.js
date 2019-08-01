@@ -9052,11 +9052,18 @@ var render = function() {
                     [
                       _c(
                         "v-flex",
-                        { attrs: { xs12: "", sm8: "", md8: "", lg8: "" } },
+                        {
+                          attrs: {
+                            xs12: "",
+                            sm8: "",
+                            md8: "",
+                            lg8: "",
+                            xl8: ""
+                          }
+                        },
                         [
                           _c("img", {
                             staticClass: "img-fluid",
-                            staticStyle: { "max-width": "400px" },
                             attrs: { src: "/images/print-server-logo.svg" }
                           })
                         ]
@@ -9078,7 +9085,15 @@ var render = function() {
                     [
                       _c(
                         "v-flex",
-                        { attrs: { xs12: "", sm8: "", md8: "", lg8: "" } },
+                        {
+                          attrs: {
+                            xs12: "",
+                            sm8: "",
+                            md10: "",
+                            lg8: "",
+                            xl8: ""
+                          }
+                        },
                         [_c("router-view", { key: _vm.$route.path })],
                         1
                       )
@@ -54922,24 +54937,6 @@ var publicRoute = [{
     return __webpack_require__.e(/*! import() | errors-404 */ "errors-404").then(__webpack_require__.bind(null, /*! ../views/error/NotFound.vue */ "./resources/js/components/dashboard/views/error/NotFound.vue"));
   }
 }, {
-  path: "/auth",
-  component: _components_layouts__WEBPACK_IMPORTED_MODULE_0__["AuthLayout"],
-  meta: {
-    title: "Login"
-  },
-  redirect: "/auth/login",
-  hidden: true,
-  children: [{
-    path: "login",
-    name: "login",
-    meta: {
-      title: "Login"
-    },
-    component: function component() {
-      return __webpack_require__.e(/*! import() | login */ "login").then(__webpack_require__.bind(null, /*! ../views/auth/Login.vue */ "./resources/js/components/dashboard/views/auth/Login.vue"));
-    }
-  }]
-}, {
   path: "/404",
   name: "404",
   meta: {
@@ -54959,7 +54956,7 @@ var publicRoute = [{
   }
 }];
 var protectedRoute = [{
-  path: "/",
+  path: "/dashboard",
   component: _components_layouts__WEBPACK_IMPORTED_MODULE_0__["DefaultLayout"],
   meta: {
     title: "Home",
@@ -54987,6 +54984,24 @@ var protectedRoute = [{
     },
     component: function component() {
       return __webpack_require__.e(/*! import() | error-403 */ "error-403").then(__webpack_require__.bind(null, /*! ../views/error/Deny.vue */ "./resources/js/components/dashboard/views/error/Deny.vue"));
+    }
+  }]
+}, {
+  path: "/",
+  component: _components_layouts__WEBPACK_IMPORTED_MODULE_0__["AuthLayout"],
+  meta: {
+    title: "Login"
+  },
+  redirect: "/login",
+  hidden: true,
+  children: [{
+    path: "login",
+    name: "login",
+    meta: {
+      title: "Login"
+    },
+    component: function component() {
+      return __webpack_require__.e(/*! import() | login */ "login").then(__webpack_require__.bind(null, /*! ../views/auth/Login.vue */ "./resources/js/components/dashboard/views/auth/Login.vue"));
     }
   }]
 }, //list

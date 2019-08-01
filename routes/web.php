@@ -12,9 +12,6 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/new-dashboard', function () {
     return view('dash');
 });
+

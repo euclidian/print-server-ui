@@ -4,14 +4,14 @@
             <v-layout>
                 <v-container fluid fill-height>
                         <v-layout align-center justify-center>
-                            <v-flex xs12 sm8 md8 lg8>
-                                <img src="/images/print-server-logo.svg" class="img-fluid" style="max-width:400px;">
+                            <v-flex xs12 sm8 md8 lg8 xl8>
+                                <img src="/images/print-server-logo.svg" class="img-fluid">
                             </v-flex>
                         </v-layout>
                 </v-container>
                 <v-container fluid fill-height>
                         <v-layout align-center justify-center>
-                            <v-flex xs12 sm8 md8 lg8>
+                            <v-flex xs12 sm8 md10 lg8 xl8>
                                 <router-view :key="$route.path"></router-view>
                             </v-flex>
                         </v-layout>
