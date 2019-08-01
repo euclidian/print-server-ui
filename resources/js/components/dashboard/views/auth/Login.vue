@@ -89,6 +89,8 @@ export default {
                     console.log(this.result.refresh_token);
                 })
                 .catch(e => {
+                    this.loading = true;
+                    this.btn_disabled = true;
                     this.errors.push(e);
                 })
 
