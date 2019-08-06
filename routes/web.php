@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+Route::middleware("refresh_my_token")->get('/', function () {
     return view('dash');
 });
 
