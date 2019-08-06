@@ -2121,7 +2121,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2797,7 +2796,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "\n.page-wrapper[data-v-17c32adc] {\n  min-height: calc(100vh - 64px - 50px - 81px);\n}\n", ""]);
+exports.push([module.i, "\n.page-wrapper[data-v-17c32adc] {\r\n  min-height: calc(100vh - 64px - 50px - 81px);\n}\r\n", ""]);
 
 // exports
 
@@ -8371,17 +8370,6 @@ var render = function() {
         [_c("v-toolbar-side-icon", { on: { click: _vm.handleDrawerToggle } })],
         1
       ),
-      _vm._v(" "),
-      _c("v-text-field", {
-        staticClass: "search",
-        attrs: {
-          flat: "",
-          "solo-inverted": "",
-          "prepend-inner-icon": "search",
-          label: "Search",
-          clearable: ""
-        }
-      }),
       _vm._v(" "),
       _c("v-spacer"),
       _vm._v(" "),

@@ -68,27 +68,98 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      no: 0,
       search: "",
       complex: {
         selected: [],
         headers: [{
-          text: "Name",
-          value: "name"
+          text: "No",
+          value: "no"
         }, {
-          text: "Email",
-          value: "email"
+          text: "ID Template",
+          value: "id_template"
         }, {
-          text: "Phone",
-          value: "phone"
+          text: "File Name",
+          value: "file_name"
+        }, {
+          text: "Real File Name",
+          value: "real_file_name"
+        }, {
+          text: "Upload Date",
+          value: "upload_date"
         }, {
           text: "Action",
           value: ""
         }],
-        items: _api_user__WEBPACK_IMPORTED_MODULE_0__["Items"]
+        items: [{
+          id: 1,
+          id_template: 'TMP0001',
+          file_name: 'Lorem Ipsum',
+          real_file_name: 'Real Lorem Ipsum',
+          upload_date: '10-03-2002'
+        }, {
+          id: 2,
+          id_template: 'TMP0001',
+          file_name: 'Lorem Ipsum',
+          real_file_name: 'Real Lorem Ipsum',
+          upload_date: '10-03-2002'
+        }, {
+          id: 3,
+          id_template: 'TMP0001',
+          file_name: 'Lorem Ipsum',
+          real_file_name: 'Real Lorem Ipsum',
+          upload_date: '10-03-2002'
+        }, {
+          id: 4,
+          id_template: 'TMP0002',
+          file_name: 'Lorem Ipsum',
+          real_file_name: 'Real Lorem Ipsum',
+          upload_date: '10-03-2002'
+        }, {
+          id: 5,
+          id_template: 'TMP0001',
+          file_name: 'Lorem Ipsum',
+          real_file_name: 'Real Lorem Ipsum',
+          upload_date: '10-03-2002'
+        }, {
+          id: 6,
+          id_template: 'TMP0001',
+          file_name: 'Lorem Ipsum',
+          real_file_name: 'Real Lorem Ipsum',
+          upload_date: '10-03-2002'
+        }, {
+          id: 7,
+          id_template: 'TMP0001',
+          file_name: 'Lorem Ipsum',
+          real_file_name: 'Real Lorem Ipsum',
+          upload_date: '10-03-2002'
+        }, {
+          id: 8,
+          id_template: 'TMP0001',
+          file_name: 'Lorem Ipsum',
+          real_file_name: 'Real Lorem Ipsum',
+          upload_date: '10-03-2002'
+        }, {
+          id: 9,
+          id_template: 'TMP0001',
+          file_name: 'Lorem Ipsum',
+          real_file_name: 'Real Lorem Ipsum',
+          upload_date: '10-03-2002'
+        }, {
+          id: 10,
+          id_template: 'TMP0001',
+          file_name: 'Lorem Ipsum',
+          real_file_name: 'Real Lorem Ipsum',
+          upload_date: '10-03-2002'
+        }]
       },
       basic: {
         headers: [{
@@ -240,15 +311,13 @@ var render = function() {
                     [
                       _c(
                         "v-toolbar",
-                        { attrs: { card: "", color: "primary" } },
+                        { attrs: { card: "", color: "white" } },
                         [
                           _c("v-text-field", {
                             staticClass: "hidden-sm-and-down",
                             attrs: {
                               flat: "",
-                              "solo-inverted": "",
-                              "background-color": "primary",
-                              color: "white",
+                              solo: "",
                               "prepend-icon": "search",
                               placeholder: "Search in Complexity",
                               "hide-details": ""
@@ -264,13 +333,11 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "v-btn",
-                            { attrs: { icon: "" } },
-                            [
-                              _c("v-icon", { attrs: { color: "white" } }, [
-                                _vm._v("filter_list")
-                              ])
-                            ],
-                            1
+                            {
+                              staticClass: "white--text",
+                              attrs: { color: "primary", depressed: "" }
+                            },
+                            [_vm._v("\n                Add Data\n            ")]
                           )
                         ],
                         1
@@ -294,6 +361,7 @@ var render = function() {
                                 50,
                                 { text: "All", value: -1 }
                               ],
+                              color: "purple--text",
                               "item-key": "name"
                             },
                             scopedSlots: _vm._u([
@@ -301,14 +369,22 @@ var render = function() {
                                 key: "items",
                                 fn: function(props) {
                                   return [
-                                    _c("td", [_vm._v(_vm._s(props.item.name))]),
+                                    _c("td", [_vm._v(_vm._s(props.item.id))]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(_vm._s(props.item.email))
+                                      _vm._v(_vm._s(props.item.id_template))
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(_vm._s(props.item.phone))
+                                      _vm._v(_vm._s(props.item.file_name))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(props.item.real_file_name))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(props.item.upload_date))
                                     ]),
                                     _vm._v(" "),
                                     _c(
@@ -323,7 +399,7 @@ var render = function() {
                                               icon: "",
                                               fab: "",
                                               dark: "",
-                                              color: "primary",
+                                              color: "success",
                                               small: ""
                                             }
                                           },
@@ -345,6 +421,23 @@ var render = function() {
                                             }
                                           },
                                           [_c("v-icon", [_vm._v("delete")])],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              depressed: "",
+                                              outline: "",
+                                              icon: "",
+                                              fab: "",
+                                              dark: "",
+                                              color: "primary",
+                                              small: ""
+                                            }
+                                          },
+                                          [_c("v-icon", [_vm._v("get_app")])],
                                           1
                                         )
                                       ],

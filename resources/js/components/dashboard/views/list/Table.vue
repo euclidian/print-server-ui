@@ -7,20 +7,18 @@
         </v-flex>
         <v-flex lg12>
           <v-card>
-            <v-toolbar card color="primary">
+            <v-toolbar card color="white">
               <v-text-field
                 flat
-                solo-inverted
-                background-color="primary"
-                color="white"
+                solo
                 prepend-icon="search"
                 placeholder="Search in Complexity"
                 v-model="search"
                 hide-details
                 class="hidden-sm-and-down"
               ></v-text-field>
-              <v-btn icon>
-                <v-icon color="white">filter_list</v-icon>
+              <v-btn class="white--text" color="primary" depressed>
+                  Add Data
               </v-btn>
             </v-toolbar>
             <v-divider></v-divider>
@@ -31,19 +29,25 @@
                 :items="complex.items"
                 :rows-per-page-items="[10, 25, 50, { text: 'All', value: -1 }]"
                 class="elevation-3"
+                color="purple--text"
                 item-key="name"
                 v-model="complex.selected"
               >
                 <template slot="items" slot-scope="props" color="primary">
-                  <td>{{ props.item.name }}</td>
-                  <td>{{ props.item.email }}</td>
-                  <td>{{ props.item.phone }}</td>
+                  <td>{{ props.item.id }}</td>
+                  <td>{{ props.item.id_template }}</td>
+                  <td>{{ props.item.file_name }}</td>
+                  <td>{{ props.item.real_file_name }}</td>
+                  <td>{{ props.item.upload_date }}</td>
                   <td>
-                    <v-btn depressed outline icon fab dark color="primary" small>
+                    <v-btn depressed outline icon fab dark color="success" small>
                       <v-icon>edit</v-icon>
                     </v-btn>
                     <v-btn depressed outline icon fab dark color="pink" small>
                       <v-icon>delete</v-icon>
+                    </v-btn>
+                    <v-btn depressed outline icon fab dark color="primary" small>
+                      <v-icon>get_app</v-icon>
                     </v-btn>
                   </td>
                 </template>
@@ -61,28 +65,115 @@ import { Items as Users } from "../../api/user"
 export default {
   data() {
     return {
+      no: 0,
       search: "",
       complex: {
         selected: [],
         headers: [
           {
-            text: "Name",
-            value: "name"
+            text: "No",
+            value: "no"
           },
           {
-            text: "Email",
-            value: "email"
+            text: "ID Template",
+            value: "id_template"
           },
           {
-            text: "Phone",
-            value: "phone"
+            text: "File Name",
+            value: "file_name"
+          },
+          {
+            text: "Real File Name",
+            value: "real_file_name"
+          },
+          {
+            text: "Upload Date",
+            value: "upload_date"
           },
           {
             text: "Action",
             value: ""
           }
         ],
-        items: Users
+        items: [
+            {
+                id:1,
+                id_template: 'TMP0001',
+                file_name: 'Lorem Ipsum',
+                real_file_name: 'Real Lorem Ipsum',
+                upload_date: '10-03-2002'
+            },
+            {
+                id:2,
+                id_template: 'TMP0001',
+                file_name: 'Lorem Ipsum',
+                real_file_name: 'Real Lorem Ipsum',
+                upload_date: '10-03-2002'
+            }
+            ,
+            {
+                id:3,
+                id_template: 'TMP0001',
+                file_name: 'Lorem Ipsum',
+                real_file_name: 'Real Lorem Ipsum',
+                upload_date: '10-03-2002'
+            }
+            ,
+            {
+                id:4,
+                id_template: 'TMP0002',
+                file_name: 'Lorem Ipsum',
+                real_file_name: 'Real Lorem Ipsum',
+                upload_date: '10-03-2002'
+            }
+            ,
+            {
+                id:5,
+                id_template: 'TMP0001',
+                file_name: 'Lorem Ipsum',
+                real_file_name: 'Real Lorem Ipsum',
+                upload_date: '10-03-2002'
+            }
+            ,
+            {
+                id:6,
+                id_template: 'TMP0001',
+                file_name: 'Lorem Ipsum',
+                real_file_name: 'Real Lorem Ipsum',
+                upload_date: '10-03-2002'
+            }
+            ,
+            {
+                id:7,
+                id_template: 'TMP0001',
+                file_name: 'Lorem Ipsum',
+                real_file_name: 'Real Lorem Ipsum',
+                upload_date: '10-03-2002'
+            }
+            ,
+            {
+                id:8,
+                id_template: 'TMP0001',
+                file_name: 'Lorem Ipsum',
+                real_file_name: 'Real Lorem Ipsum',
+                upload_date: '10-03-2002'
+            }
+            ,
+            {
+                id:9,
+                id_template: 'TMP0001',
+                file_name: 'Lorem Ipsum',
+                real_file_name: 'Real Lorem Ipsum',
+                upload_date: '10-03-2002'
+            },
+            {
+                id:10,
+                id_template: 'TMP0001',
+                file_name: 'Lorem Ipsum',
+                real_file_name: 'Real Lorem Ipsum',
+                upload_date: '10-03-2002'
+            }
+        ]
       },
       basic: {
         headers: [
