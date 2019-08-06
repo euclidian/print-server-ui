@@ -1,10 +1,10 @@
 const Menu = [
   { header: "Apps" },
   {
-    title: "Dashboard",
+    title: "Template",
     group: "apps",
-    icon: "dashboard",
-    name: "Dashboard"
+    icon: "description",
+    name: "Template"
   },
   {
     title: "Chat",

@@ -6,10 +6,6 @@
     <v-text-field flat solo-inverted prepend-inner-icon="search" label="Search" clearable class="search"></v-text-field>
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn flat href="mailto:wangqiangshen@gmail.com">Hire Me</v-btn>
-      <v-btn icon href="https://github.com/tookit/vue-material-admin">
-        <v-icon class="fa-2x">fa-github</v-icon>
-      </v-btn>
       <v-btn icon @click="handleFullScreen()">
         <v-icon>fullscreen</v-icon>
       </v-btn>
@@ -25,7 +21,7 @@
       <v-menu offset-y origin="center center" :nudge-bottom="10" transition="scale-transition">
         <v-btn icon large flat slot="activator">
           <v-avatar size="30px">
-            <img src="/static/avatar/man_4.jpg" alt="Michael Wang" />
+            <img src="/images/man_1.jpg" alt="Unknown" />
           </v-avatar>
         </v-btn>
         <v-list class="pa-0">
@@ -63,18 +59,6 @@ export default {
   data() {
     return {
       items: [
-        {
-          icon: "account_circle",
-          href: "#",
-          title: "Profile",
-          click: this.handleProfile
-        },
-        {
-          icon: "settings",
-          href: "#",
-          title: "Settings",
-          click: this.handleSetting
-        },
         {
           icon: "fullscreen_exit",
           href: "#",
