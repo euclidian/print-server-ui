@@ -8,7 +8,9 @@ import "./registerServiceWorker"
 import "roboto-fontface/css/roboto/roboto-fontface.css"
 import "font-awesome/css/font-awesome.css"
 import VueSweetalert2 from 'vue-sweetalert2';
+import TokenHelper from './helpers/TokenHelper'
 
+Vue.mixin(TokenHelper);
 Vue.use('vuetify');
 Vue.use(axios)
 Vue.use(VueSweetalert2);

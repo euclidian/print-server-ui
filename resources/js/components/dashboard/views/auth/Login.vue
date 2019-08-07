@@ -55,6 +55,17 @@
 <script>
 import axios from 'axios';
 export default {
+    mounted() {
+        if(localStorage.token_type){
+            this.result.token_type = localStorage.token_type;
+        }
+        if(localStorage.access_token){
+            this.result.access_token = localStorage.access_token;
+        }
+        if(localStorage.refresh_token){
+            this.result.refresh_token = localStorage.refresh_token;
+        }
+    },
     data: function(){
         return{
             loading: false,
@@ -90,6 +101,10 @@ export default {
 
                     if(this.result.token_type != null){
                         // handle login
+                        localStorage.token_type = this.result.token_type;
+                        localStorage.access_token = this.result.access_token;
+                        localStorage.refresh_token = this.result.refresh_token;
+
                         this.$router.push("/dashboard");
                         this.$swal({
                             text: 'Yeay..!',

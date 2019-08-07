@@ -32,6 +32,7 @@
                 color="purple--text"
                 item-key="name"
                 v-model="complex.selected"
+                id="template-table"
               >
                 <template slot="items" slot-scope="props" color="primary">
                   <td>{{ props.item.id }}</td>
@@ -63,8 +64,12 @@
 <script>
 import { Items as Users } from "../../api/user"
 export default {
+    created: function(){
+        this.tes = this.getToken('access_token');
+    },
   data() {
     return {
+      tes: '',
       no: 0,
       search: "",
       complex: {
@@ -72,7 +77,7 @@ export default {
         headers: [
           {
             text: "No",
-            value: "no"
+            value: "id"
           },
           {
             text: "ID Template",
@@ -286,3 +291,8 @@ export default {
   }
 }
 </script>
+<style>
+    #template-table th{
+        color: #3AA6B7;
+    }
+</style>

@@ -10,6 +10,7 @@
     <!-- Access Token -->
     <meta name="access_token" content="{{ session('user_access_token') }}">
 
+    <meta name="base-url" content="{{ env('THE_BASE_URL') }}">
     <title>New Dashboard || Vue</title>
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CMaterial+Icons' rel="stylesheet">

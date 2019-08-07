@@ -67,6 +67,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    if (localStorage.token_type) {
+      this.result.token_type = localStorage.token_type;
+    }
+
+    if (localStorage.access_token) {
+      this.result.access_token = localStorage.access_token;
+    }
+
+    if (localStorage.refresh_token) {
+      this.result.refresh_token = localStorage.refresh_token;
+    }
+  },
   data: function data() {
     return {
       loading: false,
@@ -102,6 +115,10 @@ __webpack_require__.r(__webpack_exports__);
 
           if (_this.result.token_type != null) {
             // handle login
+            localStorage.token_type = _this.result.token_type;
+            localStorage.access_token = _this.result.access_token;
+            localStorage.refresh_token = _this.result.refresh_token;
+
             _this.$router.push("/dashboard");
 
             _this.$swal({
