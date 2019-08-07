@@ -7,6 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Access Token -->
+    <meta name="access_token" content="{{ session('user_access_token') }}">
+
     <title>New Dashboard || Vue</title>
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CMaterial+Icons' rel="stylesheet">

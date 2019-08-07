@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class PrintApi extends Controller
 {
@@ -33,6 +35,17 @@ class PrintApi extends Controller
             ],
         ]);
         $data = json_decode($response->getBody()->getContents());
+
+        session(["user_access_token" => $data->access_token]);
+        session(["user_refresh_token" => $data->refresh_token]);
+
+        return response()->json($data);
+    }
+
+    public function logout()
+    {
+        $data = session()->all();
+        session()->flush();
 
         return response()->json($data);
     }
