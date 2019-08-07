@@ -17,3 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::middleware('api')->post('/print/login', "Web\PrintApi@login");
+Route::middleware('api')->post('/print/logout', "Web\PrintApi@logout");

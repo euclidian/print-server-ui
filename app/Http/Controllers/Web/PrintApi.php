@@ -41,4 +41,12 @@ class PrintApi extends Controller
 
         return response()->json($data);
     }
+
+    public function logout()
+    {
+        $data = session()->all();
+        session()->flush();
+
+        return response()->json($data);
+    }
 }
