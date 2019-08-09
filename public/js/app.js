@@ -49265,10 +49265,10 @@ if (token) {
 }
 
 var base_url = document.head.querySelector('meta[name="base-url"]');
+var b_url;
 
 if (base_url) {
-  var b_url = base_url.content;
-  console.log(b_url);
+  b_url = base_url.content;
 }
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

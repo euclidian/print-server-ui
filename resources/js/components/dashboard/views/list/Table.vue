@@ -63,13 +63,25 @@
 
 <script>
 import { Items as Users } from "../../api/user"
+import Axios from 'axios';
 export default {
     created: function(){
-        this.tes = this.getToken('access_token');
+        this.token = this.getToken('access_token');
+        this.url = this.getBaseUrl();
+        Axios.post(this.url+"/api/"+this.token)
+                .then(response => {
+                    console.log('response jalan');
+                    console.log(response.data);
+                })
+                .catch(e =>{
+                    console.log('Error Jalan');
+                    console.log(e);
+                })
     },
   data() {
     return {
-      tes: '',
+      token: '',
+      url: '',
       no: 0,
       search: "",
       complex: {

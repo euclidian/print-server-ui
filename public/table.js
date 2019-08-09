@@ -10,6 +10,8 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_user__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../api/user */ "./resources/js/components/dashboard/api/user.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -74,13 +76,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
-    this.tes = this.getToken('access_token');
+    this.token = this.getToken('access_token');
+    this.url = this.getBaseUrl();
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(this.url + "/api/" + this.token).then(function (response) {
+      console.log('response jalan');
+      console.log(response.data);
+    })["catch"](function (e) {
+      console.log('Error Jalan');
+      console.log(e);
+    });
   },
   data: function data() {
     return {
-      tes: '',
+      token: '',
+      url: '',
       no: 0,
       search: "",
       complex: {

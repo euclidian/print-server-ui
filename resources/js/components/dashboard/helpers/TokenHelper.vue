@@ -2,9 +2,6 @@
 // To Use This in any component just write
 // the_method('token_name');
 export default {
-    mounted: function(){
-        console.log('Token Helper Run Success');
-    },
     data: function(){
         return{
             save_token: ''

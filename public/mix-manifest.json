@@ -1,7 +1,7 @@
 {
-    "/js/app.js": "/js/app.js?id=0fad49372b2cb59ba399",
+    "/js/app.js": "/js/app.js?id=6c68ab71f1bfb5b5dc13",
     "/css/app.css": "/css/app.css?id=d41d8cd98f00b204e980",
-    "/js/main.js": "/js/main.js?id=5c0f47ffe21b0d95d65c",
+    "/js/main.js": "/js/main.js?id=41c2f337332981f5360c",
     "/chart-widget.js": "/chart-widget.js?id=befc1a3406b60c92a568",
     "/chat-contact.js": "/chat-contact.js?id=bba18a3d43505e1aa0d1",
     "/chat-messaging.js": "/chat-messaging.js?id=ba9706b12de16b33493a",
@@ -13,6 +13,6 @@
     "/routes.js": "/routes.js?id=f6f1706895ee38bc7087",
     "/social-widget.js": "/social-widget.js?id=c1d0e7014d760f1d9ff3",
     "/statistic-widget.js": "/statistic-widget.js?id=1d51abf94d12883dea2f",
-    "/table.js": "/table.js?id=af27d75feb67f8505a57",
+    "/table.js": "/table.js?id=af94fd83a679753db209",
     "/vendors~chart-widget.js": "/vendors~chart-widget.js?id=2767f25deadf8311b4db"
 }

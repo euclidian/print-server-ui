@@ -38,10 +38,9 @@ if (token) {
 }
 
 let base_url = document.head.querySelector('meta[name="base-url"]');
-
+let b_url;
 if(base_url){
-    var b_url = base_url.content;
-    console.log(b_url);
+    b_url = base_url.content;
 }
 
 /**
