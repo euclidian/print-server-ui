@@ -81,6 +81,7 @@ export default {
                     console.log(response.data);
                     this.results = response.data.data;
                     var no=0;
+                    this.complex.items.splice(0,  this.complex.items.length);
                     for(var i = 0; i < this.results.length; i++){
                         no = no +1;
                         this.hasil = {
