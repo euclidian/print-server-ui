@@ -90,7 +90,7 @@ __webpack_require__.r(__webpack_exports__);
     var bodyParameters = {
       key: ""
     };
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(this.url + "/api/client/allJRXML", config).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(this.url + "/api/allJRXML", config).then(function (response) {
       console.log('response jalan');
       console.log(response.data);
     })["catch"](function (e) {

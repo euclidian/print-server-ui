@@ -75,7 +75,7 @@ export default {
         var bodyParameters = {
             key: ""
         }
-        Axios.get(this.url+"/api/client/allJRXML", config)
+        Axios.get(this.url+"/api/allJRXML", config)
                 .then(response => {
                     console.log('response jalan');
                     console.log(response.data);
