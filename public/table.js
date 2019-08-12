@@ -79,6 +79,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
+    var _this = this;
+
     this.token = this.getToken('access_token');
     this.url = this.getBaseUrl();
     var config = {
@@ -93,6 +95,23 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(this.url + "/api/allJRXML", config).then(function (response) {
       console.log('response jalan');
       console.log(response.data);
+      _this.results = response.data.data;
+      var no = 0;
+
+      for (var i = 0; i < _this.results.length; i++) {
+        no = no + 1;
+        _this.hasil = {
+          num: no,
+          id_template: _this.results[i].id,
+          file_name: _this.results[i].filename,
+          real_file_name: _this.results[i].realfilename,
+          upload_date: _this.results[i].updated_at
+        };
+
+        _this.complex.items.push(_this.hasil);
+      }
+
+      console.log(_this.results[0]);
     })["catch"](function (e) {
       console.log('Error Jalan');
       console.log(e);
@@ -100,6 +119,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      results: [],
+      hasil: {},
       token: '',
       url: '',
       no: 0,
@@ -108,7 +129,7 @@ __webpack_require__.r(__webpack_exports__);
         selected: [],
         headers: [{
           text: "No",
-          value: "id"
+          value: ""
         }, {
           text: "ID Template",
           value: "id_template"
@@ -125,67 +146,7 @@ __webpack_require__.r(__webpack_exports__);
           text: "Action",
           value: ""
         }],
-        items: [{
-          id: 1,
-          id_template: 'TMP0001',
-          file_name: 'Lorem Ipsum',
-          real_file_name: 'Real Lorem Ipsum',
-          upload_date: '10-03-2002'
-        }, {
-          id: 2,
-          id_template: 'TMP0001',
-          file_name: 'Lorem Ipsum',
-          real_file_name: 'Real Lorem Ipsum',
-          upload_date: '10-03-2002'
-        }, {
-          id: 3,
-          id_template: 'TMP0001',
-          file_name: 'Lorem Ipsum',
-          real_file_name: 'Real Lorem Ipsum',
-          upload_date: '10-03-2002'
-        }, {
-          id: 4,
-          id_template: 'TMP0002',
-          file_name: 'Lorem Ipsum',
-          real_file_name: 'Real Lorem Ipsum',
-          upload_date: '10-03-2002'
-        }, {
-          id: 5,
-          id_template: 'TMP0001',
-          file_name: 'Lorem Ipsum',
-          real_file_name: 'Real Lorem Ipsum',
-          upload_date: '10-03-2002'
-        }, {
-          id: 6,
-          id_template: 'TMP0001',
-          file_name: 'Lorem Ipsum',
-          real_file_name: 'Real Lorem Ipsum',
-          upload_date: '10-03-2002'
-        }, {
-          id: 7,
-          id_template: 'TMP0001',
-          file_name: 'Lorem Ipsum',
-          real_file_name: 'Real Lorem Ipsum',
-          upload_date: '10-03-2002'
-        }, {
-          id: 8,
-          id_template: 'TMP0001',
-          file_name: 'Lorem Ipsum',
-          real_file_name: 'Real Lorem Ipsum',
-          upload_date: '10-03-2002'
-        }, {
-          id: 9,
-          id_template: 'TMP0001',
-          file_name: 'Lorem Ipsum',
-          real_file_name: 'Real Lorem Ipsum',
-          upload_date: '10-03-2002'
-        }, {
-          id: 10,
-          id_template: 'TMP0001',
-          file_name: 'Lorem Ipsum',
-          real_file_name: 'Real Lorem Ipsum',
-          upload_date: '10-03-2002'
-        }]
+        items: []
       },
       basic: {
         headers: [{
@@ -445,7 +406,7 @@ var render = function() {
                                 key: "items",
                                 fn: function(props) {
                                   return [
-                                    _c("td", [_vm._v(_vm._s(props.item.id))]),
+                                    _c("td", [_vm._v(_vm._s(props.item.num))]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _vm._v(_vm._s(props.item.id_template))

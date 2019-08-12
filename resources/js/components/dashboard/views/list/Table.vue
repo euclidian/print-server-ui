@@ -35,7 +35,7 @@
                 id="template-table"
               >
                 <template slot="items" slot-scope="props" color="primary">
-                  <td>{{ props.item.id }}</td>
+                  <td>{{ props.item.num }}</td>
                   <td>{{ props.item.id_template }}</td>
                   <td>{{ props.item.file_name }}</td>
                   <td>{{ props.item.real_file_name }}</td>
@@ -79,14 +79,31 @@ export default {
                 .then(response => {
                     console.log('response jalan');
                     console.log(response.data);
+                    this.results = response.data.data;
+                    var no=0;
+                    for(var i = 0; i < this.results.length; i++){
+                        no = no +1;
+                        this.hasil = {
+                            num: no,
+                            id_template: this.results[i].id,
+                            file_name: this.results[i].filename,
+                            real_file_name:this.results[i].realfilename,
+                            upload_date: this.results[i].updated_at
+                        }
+                        this.complex.items.push(this.hasil);
+                    }
+
+                    console.log(this.results[0]);
                 })
                 .catch(e =>{
                     console.log('Error Jalan');
                     console.log(e);
                 })
     },
-  data() {
+  data: function() {
     return {
+      results: [],
+      hasil: {},
       token: '',
       url: '',
       no: 0,
@@ -96,7 +113,7 @@ export default {
         headers: [
           {
             text: "No",
-            value: "id"
+            value: ""
           },
           {
             text: "ID Template",
@@ -119,85 +136,7 @@ export default {
             value: ""
           }
         ],
-        items: [
-            {
-                id:1,
-                id_template: 'TMP0001',
-                file_name: 'Lorem Ipsum',
-                real_file_name: 'Real Lorem Ipsum',
-                upload_date: '10-03-2002'
-            },
-            {
-                id:2,
-                id_template: 'TMP0001',
-                file_name: 'Lorem Ipsum',
-                real_file_name: 'Real Lorem Ipsum',
-                upload_date: '10-03-2002'
-            }
-            ,
-            {
-                id:3,
-                id_template: 'TMP0001',
-                file_name: 'Lorem Ipsum',
-                real_file_name: 'Real Lorem Ipsum',
-                upload_date: '10-03-2002'
-            }
-            ,
-            {
-                id:4,
-                id_template: 'TMP0002',
-                file_name: 'Lorem Ipsum',
-                real_file_name: 'Real Lorem Ipsum',
-                upload_date: '10-03-2002'
-            }
-            ,
-            {
-                id:5,
-                id_template: 'TMP0001',
-                file_name: 'Lorem Ipsum',
-                real_file_name: 'Real Lorem Ipsum',
-                upload_date: '10-03-2002'
-            }
-            ,
-            {
-                id:6,
-                id_template: 'TMP0001',
-                file_name: 'Lorem Ipsum',
-                real_file_name: 'Real Lorem Ipsum',
-                upload_date: '10-03-2002'
-            }
-            ,
-            {
-                id:7,
-                id_template: 'TMP0001',
-                file_name: 'Lorem Ipsum',
-                real_file_name: 'Real Lorem Ipsum',
-                upload_date: '10-03-2002'
-            }
-            ,
-            {
-                id:8,
-                id_template: 'TMP0001',
-                file_name: 'Lorem Ipsum',
-                real_file_name: 'Real Lorem Ipsum',
-                upload_date: '10-03-2002'
-            }
-            ,
-            {
-                id:9,
-                id_template: 'TMP0001',
-                file_name: 'Lorem Ipsum',
-                real_file_name: 'Real Lorem Ipsum',
-                upload_date: '10-03-2002'
-            },
-            {
-                id:10,
-                id_template: 'TMP0001',
-                file_name: 'Lorem Ipsum',
-                real_file_name: 'Real Lorem Ipsum',
-                upload_date: '10-03-2002'
-            }
-        ]
+        items: []
       },
       basic: {
         headers: [
