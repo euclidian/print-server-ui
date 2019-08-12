@@ -32,6 +32,7 @@
                 color="purple--text"
                 item-key="name"
                 v-model="complex.selected"
+                id="template-table"
               >
                 <template slot="items" slot-scope="props" color="primary">
                   <td>{{ props.item.id }}</td>
@@ -62,9 +63,32 @@
 
 <script>
 import { Items as Users } from "../../api/user"
+import Axios from 'axios';
 export default {
+    created: function(){
+        this.token = this.getToken('access_token');
+        this.url = this.getBaseUrl();
+        var config = {
+            body: {},
+            headers: {'Authorization': "Bearer "+this.token}
+        }
+        var bodyParameters = {
+            key: ""
+        }
+        Axios.get(this.url+"/api/allJRXML", config)
+                .then(response => {
+                    console.log('response jalan');
+                    console.log(response.data);
+                })
+                .catch(e =>{
+                    console.log('Error Jalan');
+                    console.log(e);
+                })
+    },
   data() {
     return {
+      token: '',
+      url: '',
       no: 0,
       search: "",
       complex: {
@@ -72,7 +96,7 @@ export default {
         headers: [
           {
             text: "No",
-            value: "no"
+            value: "id"
           },
           {
             text: "ID Template",
@@ -286,3 +310,8 @@ export default {
   }
 }
 </script>
+<style>
+    #template-table th{
+        color: #3AA6B7;
+    }
+</style>
