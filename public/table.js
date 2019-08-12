@@ -81,7 +81,16 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.token = this.getToken('access_token');
     this.url = this.getBaseUrl();
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(this.url + "/api/" + this.token).then(function (response) {
+    var config = {
+      body: {},
+      headers: {
+        'Authorization': "Bearer " + this.token
+      }
+    };
+    var bodyParameters = {
+      key: ""
+    };
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(this.url + "/api/client/allJRXML", config).then(function (response) {
       console.log('response jalan');
       console.log(response.data);
     })["catch"](function (e) {

@@ -38,10 +38,7 @@ if (token) {
 }
 
 let base_url = document.head.querySelector('meta[name="base-url"]');
-let b_url;
-if(base_url){
-    b_url = base_url.content;
-}
+let b_url = base_url.content;
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

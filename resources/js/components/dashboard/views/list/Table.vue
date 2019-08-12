@@ -68,7 +68,14 @@ export default {
     created: function(){
         this.token = this.getToken('access_token');
         this.url = this.getBaseUrl();
-        Axios.post(this.url+"/api/"+this.token)
+        var config = {
+            body: {},
+            headers: {'Authorization': "Bearer "+this.token}
+        }
+        var bodyParameters = {
+            key: ""
+        }
+        Axios.get(this.url+"/api/client/allJRXML", config)
                 .then(response => {
                     console.log('response jalan');
                     console.log(response.data);

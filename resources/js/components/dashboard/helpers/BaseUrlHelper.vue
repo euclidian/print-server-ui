@@ -8,14 +8,8 @@ export default {
     },
     methods: {
         getBaseUrl: function(){
-            var meta = document.getElementsByTagName("meta");
-
-            for(var i = 0; i < meta.length; i++){
-                if(meta[i].name == "base-url"){
-                    this.index = i;
-                }
-            }
-            this.base_url = meta[this.index].content;
+            var meta = document.head.querySelector('meta[name="base-url"]');
+            this.base_url = meta.content;
             return this.base_url;
         }
     }
