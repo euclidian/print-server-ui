@@ -2,6 +2,8 @@
   <div class="list-table">
     <v-container grid-list-xl fluid>
       <v-layout row wrap>
+
+
         <v-flex sm12>
           <h3>Complexity</h3>
         </v-flex>
@@ -17,9 +19,49 @@
                 hide-details
                 class="hidden-sm-and-down"
               ></v-text-field>
-              <v-btn class="white--text" color="primary" depressed>
-                  Add Data
-              </v-btn>
+              <div class="text-center">
+              <v-dialog
+                v-model="dialog"
+                width="600"
+                height="400"
+                >
+                <template v-slot:activator="{ on }">
+                    <v-btn class="white--text" color="primary" depressed v-on="on">
+                        Add Data
+                    </v-btn>
+                </template>
+
+                <v-card>
+                    <v-toolbar card prominent color="primary" dark="">
+                    <v-toolbar-title class="body-1">Add Data</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-btn icon v-on:click="dialog = false">
+                        <v-icon>close</v-icon>
+                    </v-btn>
+                    </v-toolbar>
+                    <v-card-text>
+                        <vue-dropzone
+                        v-on:vdropzone-complete="getFileStatus"
+                        v-on:vdropzone-mounted="the_file = ''"
+                         :duplicateCheck="true"
+                         ref="myVueDropzone"
+                         id="dropzone"
+                         :options="dropzoneOptions"
+                         :useCustomSlot=true>
+                            <div class="dropzone-custom-content">
+                              <h3 class="dropzone-custom-title success--text">Drag and drop to upload content!</h3>
+                              <div class="subtitle">...or click to select a file from your computer</div>
+                            </div>
+                        </vue-dropzone>
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn depressed color="primary" v-on:click="processInput">Submit</v-btn>
+                    </v-card-actions>
+
+                </v-card>
+                </v-dialog>
+              </div>
             </v-toolbar>
             <v-divider></v-divider>
             <v-card-text class="pa-0">
@@ -64,45 +106,102 @@
 <script>
 import { Items as Users } from "../../api/user"
 import Axios from 'axios';
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 export default {
-    created: function(){
-        this.token = this.getToken('access_token');
-        this.url = this.getBaseUrl();
-        var config = {
-            body: {},
-            headers: {'Authorization': "Bearer "+this.token}
-        }
-        var bodyParameters = {
-            key: ""
-        }
-        Axios.get(this.url+"/api/allJRXML", config)
-                .then(response => {
-                    console.log('response jalan');
-                    console.log(response.data);
-                    this.results = response.data.data;
-                    var no=0;
-                    this.complex.items.splice(0,  this.complex.items.length);
-                    for(var i = 0; i < this.results.length; i++){
-                        no = no +1;
-                        this.hasil = {
-                            num: no,
-                            id_template: this.results[i].id,
-                            file_name: this.results[i].filename,
-                            real_file_name:this.results[i].realfilename,
-                            upload_date: this.results[i].updated_at
+  components: {
+    vueDropzone: vue2Dropzone
+  },
+  methods: {
+        getAllData: function(){
+            this.token = this.getToken('access_token');
+            this.url = this.getBaseUrl();
+            var config = {
+                body: {},
+                headers: {'Authorization': "Bearer "+this.token}
+            }
+            var bodyParameters = {
+                key: ""
+            }
+            Axios.get(this.url+"/api/allJRXML", config)
+                    .then(response => {
+                        console.log('response jalan');
+                        console.log(response.data);
+                        this.results = response.data.data;
+                        var no=0;
+                        this.complex.items.splice(0,  this.complex.items.length);
+                        for(var i = 0; i < this.results.length; i++){
+                            no = no +1;
+                            this.hasil = {
+                                num: no,
+                                id_template: this.results[i].id,
+                                file_name: this.results[i].filename,
+                                real_file_name:this.results[i].realfilename,
+                                upload_date: this.results[i].updated_at
+                            }
+                            this.complex.items.push(this.hasil);
                         }
-                        this.complex.items.push(this.hasil);
-                    }
 
-                    console.log(this.results[0]);
-                })
-                .catch(e =>{
-                    console.log('Error Jalan');
-                    console.log(e);
-                })
+                        console.log(this.results[0]);
+                    })
+                    .catch(e =>{
+                        console.log('Error Jalan');
+                        console.log(e);
+                    })
+        },
+        getFileStatus: function(response){
+            this.fileStatus = response.status;
+        },
+        processInput: function(){
+            this.$refs.myVueDropzone.processQueue();
+        }
+    },
+    watch: {
+        fileStatus: function(){
+            if(this.fileStatus == 'success'){
+                this.dialog = false;
+                this.$refs.myVueDropzone.removeAllFiles();
+                this.$swal({
+                        title: 'Yeay..!',
+                        text: 'Data Has been Added',
+                        showConfirmButton: false,
+                        timer:1500,
+                        type: 'success'
+                    });
+                this.getAllData();
+                this.fileStatus = '';
+            }
+            else if(this.fileStatus == 'error'){
+                this.$swal({
+                        title: 'Oops..',
+                        text: 'Failed to Add Data',
+                        showConfirmButton: false,
+                        timer:1500,
+                        type: 'error'
+                    });
+                    this.fileStatus = '';
+            }
+        }
+    },
+    created: function(){
+        this.getAllData();
     },
   data: function() {
     return {
+        the_file: '',
+        fileStatus: '',
+      dropzoneOptions: {
+          url: this.url + '/api/addJRXML',
+          thumbnailWidth: 200,
+          maxFilesize: 5,
+          maxFiles: 1,
+          headers: {'Authorization': "Bearer "+this.token},
+          addRemoveLinks: true,
+          acceptedFiles: '.jrxml',
+          autoProcessQueue: false,
+          timeout: 0
+      },
+        dialog: false,
       results: [],
       hasil: {},
       token: '',

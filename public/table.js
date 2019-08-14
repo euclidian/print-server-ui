@@ -12,6 +12,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_user__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../api/user */ "./resources/js/components/dashboard/api/user.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue2_dropzone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-dropzone */ "./node_modules/vue2-dropzone/dist/vue2Dropzone.js");
+/* harmony import */ var vue2_dropzone__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue2_dropzone__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue2_dropzone_dist_vue2Dropzone_min_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue2-dropzone/dist/vue2Dropzone.min.css */ "./node_modules/vue2-dropzone/dist/vue2Dropzone.min.css");
+/* harmony import */ var vue2_dropzone_dist_vue2Dropzone_min_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue2_dropzone_dist_vue2Dropzone_min_css__WEBPACK_IMPORTED_MODULE_3__);
 //
 //
 //
@@ -75,50 +79,143 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    vueDropzone: vue2_dropzone__WEBPACK_IMPORTED_MODULE_2___default.a
+  },
+  methods: {
+    getAllData: function getAllData() {
+      var _this = this;
+
+      this.token = this.getToken('access_token');
+      this.url = this.getBaseUrl();
+      var config = {
+        body: {},
+        headers: {
+          'Authorization': "Bearer " + this.token
+        }
+      };
+      var bodyParameters = {
+        key: ""
+      };
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(this.url + "/api/allJRXML", config).then(function (response) {
+        console.log('response jalan');
+        console.log(response.data);
+        _this.results = response.data.data;
+        var no = 0;
+
+        _this.complex.items.splice(0, _this.complex.items.length);
+
+        for (var i = 0; i < _this.results.length; i++) {
+          no = no + 1;
+          _this.hasil = {
+            num: no,
+            id_template: _this.results[i].id,
+            file_name: _this.results[i].filename,
+            real_file_name: _this.results[i].realfilename,
+            upload_date: _this.results[i].updated_at
+          };
+
+          _this.complex.items.push(_this.hasil);
+        }
+
+        console.log(_this.results[0]);
+      })["catch"](function (e) {
+        console.log('Error Jalan');
+        console.log(e);
+      });
+    },
+    getFileStatus: function getFileStatus(response) {
+      this.fileStatus = response.status;
+    },
+    processInput: function processInput() {
+      this.$refs.myVueDropzone.processQueue();
+    }
+  },
+  watch: {
+    fileStatus: function fileStatus() {
+      if (this.fileStatus == 'success') {
+        this.dialog = false;
+        this.$refs.myVueDropzone.removeAllFiles();
+        this.$swal({
+          title: 'Yeay..!',
+          text: 'Data Has been Added',
+          showConfirmButton: false,
+          timer: 1500,
+          type: 'success'
+        });
+        this.getAllData();
+        this.fileStatus = '';
+      }
+    }
+  },
   created: function created() {
-    var _this = this;
-
-    this.token = this.getToken('access_token');
-    this.url = this.getBaseUrl();
-    var config = {
-      body: {},
-      headers: {
-        'Authorization': "Bearer " + this.token
-      }
-    };
-    var bodyParameters = {
-      key: ""
-    };
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(this.url + "/api/allJRXML", config).then(function (response) {
-      console.log('response jalan');
-      console.log(response.data);
-      _this.results = response.data.data;
-      var no = 0;
-
-      for (var i = 0; i < _this.results.length; i++) {
-        no = no + 1;
-        _this.hasil = {
-          num: no,
-          id_template: _this.results[i].id,
-          file_name: _this.results[i].filename,
-          real_file_name: _this.results[i].realfilename,
-          upload_date: _this.results[i].updated_at
-        };
-
-        _this.complex.items.push(_this.hasil);
-      }
-
-      console.log(_this.results[0]);
-    })["catch"](function (e) {
-      console.log('Error Jalan');
-      console.log(e);
-    });
+    this.getAllData();
   },
   data: function data() {
     return {
+      the_file: '',
+      fileStatus: '',
+      dropzoneOptions: {
+        url: this.url + '/api/add',
+        thumbnailWidth: 200,
+        maxFilesize: 1000,
+        maxFiles: 1,
+        headers: {
+          "My-Awesome-Header": "header value"
+        },
+        addRemoveLinks: true,
+        acceptedFiles: '.jrxml',
+        autoProcessQueue: false,
+        timeout: 0
+      },
+      dialog: false,
       results: [],
       hasil: {},
       token: '',
@@ -368,12 +465,178 @@ var render = function() {
                           }),
                           _vm._v(" "),
                           _c(
-                            "v-btn",
-                            {
-                              staticClass: "white--text",
-                              attrs: { color: "primary", depressed: "" }
-                            },
-                            [_vm._v("\n                Add Data\n            ")]
+                            "div",
+                            { staticClass: "text-center" },
+                            [
+                              _c(
+                                "v-dialog",
+                                {
+                                  attrs: { width: "600", height: "400" },
+                                  scopedSlots: _vm._u([
+                                    {
+                                      key: "activator",
+                                      fn: function(ref) {
+                                        var on = ref.on
+                                        return [
+                                          _c(
+                                            "v-btn",
+                                            _vm._g(
+                                              {
+                                                staticClass: "white--text",
+                                                attrs: {
+                                                  color: "primary",
+                                                  depressed: ""
+                                                }
+                                              },
+                                              on
+                                            ),
+                                            [
+                                              _vm._v(
+                                                "\n                      Add Data\n                  "
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      }
+                                    }
+                                  ]),
+                                  model: {
+                                    value: _vm.dialog,
+                                    callback: function($$v) {
+                                      _vm.dialog = $$v
+                                    },
+                                    expression: "dialog"
+                                  }
+                                },
+                                [
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-card",
+                                    [
+                                      _c(
+                                        "v-toolbar",
+                                        {
+                                          attrs: {
+                                            card: "",
+                                            prominent: "",
+                                            color: "primary",
+                                            dark: ""
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-toolbar-title",
+                                            { staticClass: "body-1" },
+                                            [_vm._v("Add Data")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("v-spacer"),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: { icon: "" },
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.dialog = false
+                                                }
+                                              }
+                                            },
+                                            [_c("v-icon", [_vm._v("close")])],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-card-text",
+                                        [
+                                          _c(
+                                            "vue-dropzone",
+                                            {
+                                              ref: "myVueDropzone",
+                                              attrs: {
+                                                duplicateCheck: true,
+                                                id: "dropzone",
+                                                options: _vm.dropzoneOptions,
+                                                useCustomSlot: true
+                                              },
+                                              on: {
+                                                "vdropzone-complete":
+                                                  _vm.getFileStatus,
+                                                "vdropzone-mounted": function(
+                                                  $event
+                                                ) {
+                                                  _vm.the_file = ""
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "dropzone-custom-content"
+                                                },
+                                                [
+                                                  _c(
+                                                    "h3",
+                                                    {
+                                                      staticClass:
+                                                        "dropzone-custom-title success--text"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Drag and drop to upload content!"
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "subtitle" },
+                                                    [
+                                                      _vm._v(
+                                                        "...or click to select a file from your computer"
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-card-actions",
+                                        [
+                                          _c("v-spacer"),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: {
+                                                depressed: "",
+                                                color: "primary"
+                                              },
+                                              on: { click: _vm.processInput }
+                                            },
+                                            [_vm._v("Submit")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
                           )
                         ],
                         1

@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"chat-contact":"chat-contact","chat-messaging":"chat-messaging","error-403":"error-403","errors-404":"errors-404","errors-500":"errors-500","list-widget":"list-widget","login":"login","routes":"routes","social-widget":"social-widget","statistic-widget":"statistic-widget","table":"table","vendors~chart-widget":"vendors~chart-widget","chart-widget":"chart-widget"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"chat-contact":"chat-contact","chat-messaging":"chat-messaging","error-403":"error-403","errors-404":"errors-404","errors-500":"errors-500","list-widget":"list-widget","login":"login","routes":"routes","social-widget":"social-widget","statistic-widget":"statistic-widget","vendors~chart-widget":"vendors~chart-widget","chart-widget":"chart-widget","vendors~table":"vendors~table","table":"table"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -54823,7 +54823,7 @@ var protectedRoute = [{
       icon: "dashboard"
     },
     component: function component() {
-      return __webpack_require__.e(/*! import() | dashboard */ "table").then(__webpack_require__.bind(null, /*! ../views/list/Table.vue */ "./resources/js/components/dashboard/views/list/Table.vue"));
+      return Promise.all(/*! import() | dashboard */[__webpack_require__.e("vendors~table"), __webpack_require__.e("table")]).then(__webpack_require__.bind(null, /*! ../views/list/Table.vue */ "./resources/js/components/dashboard/views/list/Table.vue"));
     }
   }, {
     path: "/403",
@@ -54871,7 +54871,7 @@ var protectedRoute = [{
       title: "CMS Table"
     },
     component: function component() {
-      return __webpack_require__.e(/*! import() | table */ "table").then(__webpack_require__.bind(null, /*! ../views/list/Table.vue */ "./resources/js/components/dashboard/views/list/Table.vue"));
+      return Promise.all(/*! import() | table */[__webpack_require__.e("vendors~table"), __webpack_require__.e("table")]).then(__webpack_require__.bind(null, /*! ../views/list/Table.vue */ "./resources/js/components/dashboard/views/list/Table.vue"));
     }
   }]
 }, //widgets
