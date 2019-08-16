@@ -42,7 +42,6 @@
                     <v-card-text>
                         <vue-dropzone
                         v-on:vdropzone-complete="getFileStatus"
-                        v-on:vdropzone-mounted="the_file = ''"
                          :duplicateCheck="true"
                          ref="myVueDropzone"
                          id="dropzone"
@@ -56,6 +55,7 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
+                        <v-btn text depressed v-if="fileStatus == 'error'" v-on:click="clsDrop">Clear Dropzone</v-btn>
                         <v-btn depressed color="primary" v-on:click="processInput">Submit</v-btn>
                     </v-card-actions>
 
@@ -149,12 +149,19 @@ export default {
                         console.log(e);
                     })
         },
+        clsDrop: function(){
+          this.$refs.myVueDropzone.removeAllFiles();
+          this.fileStatus = '';
+        },
         getFileStatus: function(response){
             this.fileStatus = response.status;
         },
         processInput: function(){
             this.$refs.myVueDropzone.processQueue();
         }
+    },
+    event: {
+
     },
     watch: {
         fileStatus: function(){
@@ -174,12 +181,11 @@ export default {
             else if(this.fileStatus == 'error'){
                 this.$swal({
                         title: 'Oops..',
-                        text: 'Failed to Add Data',
+                        text: 'Data Extention must be JRXML',
                         showConfirmButton: false,
                         timer:1500,
                         type: 'error'
                     });
-                    this.fileStatus = '';
             }
         }
     },
@@ -191,15 +197,17 @@ export default {
         the_file: '',
         fileStatus: '',
       dropzoneOptions: {
-          url: this.url + '/api/addJRXML',
+          url: this.getBaseUrl() + '/api/addJRXML',
           thumbnailWidth: 200,
-          maxFilesize: 5,
+          maxFilesize: 2,
           maxFiles: 1,
-          headers: {'Authorization': "Bearer "+this.token},
+          paramName: 'template',
+          headers: {
+            'Authorization': "Bearer "+this.getToken('access_token'),
+          },
           addRemoveLinks: true,
           acceptedFiles: '.jrxml',
           autoProcessQueue: false,
-          timeout: 0
       },
         dialog: false,
       results: [],

@@ -171,6 +171,10 @@ __webpack_require__.r(__webpack_exports__);
         console.log(e);
       });
     },
+    clsDrop: function clsDrop() {
+      this.$refs.myVueDropzone.removeAllFiles();
+      this.fileStatus = '';
+    },
     getFileStatus: function getFileStatus(response) {
       this.fileStatus = response.status;
     },
@@ -178,6 +182,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.myVueDropzone.processQueue();
     }
   },
+  event: {},
   watch: {
     fileStatus: function fileStatus() {
       if (this.fileStatus == 'success') {
@@ -192,6 +197,14 @@ __webpack_require__.r(__webpack_exports__);
         });
         this.getAllData();
         this.fileStatus = '';
+      } else if (this.fileStatus == 'error') {
+        this.$swal({
+          title: 'Oops..',
+          text: 'Data Extention must be JRXML',
+          showConfirmButton: false,
+          timer: 1500,
+          type: 'error'
+        });
       }
     }
   },
@@ -203,17 +216,17 @@ __webpack_require__.r(__webpack_exports__);
       the_file: '',
       fileStatus: '',
       dropzoneOptions: {
-        url: this.url + '/api/add',
+        url: this.getBaseUrl() + '/api/addJRXML',
         thumbnailWidth: 200,
-        maxFilesize: 1000,
+        maxFilesize: 2,
         maxFiles: 1,
+        paramName: 'template',
         headers: {
-          "My-Awesome-Header": "header value"
+          'Authorization': "Bearer " + this.getToken('access_token')
         },
         addRemoveLinks: true,
         acceptedFiles: '.jrxml',
-        autoProcessQueue: false,
-        timeout: 0
+        autoProcessQueue: false
       },
       dialog: false,
       results: [],
@@ -564,12 +577,7 @@ var render = function() {
                                               },
                                               on: {
                                                 "vdropzone-complete":
-                                                  _vm.getFileStatus,
-                                                "vdropzone-mounted": function(
-                                                  $event
-                                                ) {
-                                                  _vm.the_file = ""
-                                                }
+                                                  _vm.getFileStatus
                                               }
                                             },
                                             [
@@ -614,6 +622,20 @@ var render = function() {
                                         "v-card-actions",
                                         [
                                           _c("v-spacer"),
+                                          _vm._v(" "),
+                                          _vm.fileStatus == "error"
+                                            ? _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    text: "",
+                                                    depressed: ""
+                                                  },
+                                                  on: { click: _vm.clsDrop }
+                                                },
+                                                [_vm._v("Clear Dropzone")]
+                                              )
+                                            : _vm._e(),
                                           _vm._v(" "),
                                           _c(
                                             "v-btn",
