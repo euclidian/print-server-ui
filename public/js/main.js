@@ -2619,6 +2619,36 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/helpers/SecureUrl.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard/helpers/SecureUrl.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  created: function created() {
+    var currentUrl = window.location.href;
+    console.log(currentUrl);
+    console.log('Secure Url Success');
+
+    if (currentUrl != 'http://localhost:8000/#/login') {
+      if (!this.getToken('access_token')) {
+        this.$router.push("/login");
+      }
+    }
+  },
+  data: function data() {
+    return {
+      fromLocal: ''
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/helpers/TokenHelper.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard/helpers/TokenHelper.vue?vue&type=script&lang=js& ***!
@@ -54611,6 +54641,56 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/dashboard/helpers/SecureUrl.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/dashboard/helpers/SecureUrl.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SecureUrl_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SecureUrl.vue?vue&type=script&lang=js& */ "./resources/js/components/dashboard/helpers/SecureUrl.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _SecureUrl_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/dashboard/helpers/SecureUrl.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/dashboard/helpers/SecureUrl.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/dashboard/helpers/SecureUrl.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SecureUrl_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./SecureUrl.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/helpers/SecureUrl.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SecureUrl_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/dashboard/helpers/TokenHelper.vue":
 /*!*******************************************************************!*\
   !*** ./resources/js/components/dashboard/helpers/TokenHelper.vue ***!
@@ -54686,6 +54766,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_sweetalert2__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-sweetalert2 */ "./node_modules/vue-sweetalert2/dist/index.js");
 /* harmony import */ var _helpers_TokenHelper__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./helpers/TokenHelper */ "./resources/js/components/dashboard/helpers/TokenHelper.vue");
 /* harmony import */ var _helpers_BaseUrlHelper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./helpers/BaseUrlHelper */ "./resources/js/components/dashboard/helpers/BaseUrlHelper.vue");
+/* harmony import */ var _helpers_SecureUrl__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./helpers/SecureUrl */ "./resources/js/components/dashboard/helpers/SecureUrl.vue");
+
 
 
 
@@ -54700,6 +54782,7 @@ __webpack_require__.r(__webpack_exports__);
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin(_helpers_TokenHelper__WEBPACK_IMPORTED_MODULE_10__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin(_helpers_BaseUrlHelper__WEBPACK_IMPORTED_MODULE_11__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin(_helpers_SecureUrl__WEBPACK_IMPORTED_MODULE_12__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use('vuetify');
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(axios__WEBPACK_IMPORTED_MODULE_5___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_9__["default"]);
