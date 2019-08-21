@@ -10,9 +10,11 @@ import "font-awesome/css/font-awesome.css"
 import VueSweetalert2 from 'vue-sweetalert2';
 import TokenHelper from './helpers/TokenHelper'
 import BaseUrlHelper from './helpers/BaseUrlHelper';
+import SecureUrl from './helpers/SecureUrl';
 
 Vue.mixin(TokenHelper);
 Vue.mixin(BaseUrlHelper);
+Vue.mixin(SecureUrl);
 Vue.use('vuetify');
 Vue.use(axios)
 Vue.use(VueSweetalert2);

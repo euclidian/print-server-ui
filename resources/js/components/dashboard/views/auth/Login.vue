@@ -102,6 +102,7 @@ export default {
                     if(this.result.token_type != null){
                         // handle login
                         localStorage.token_type = this.result.token_type;
+                        localStorage.expires_in = this.result.expires_in;
                         localStorage.access_token = this.result.access_token;
                         localStorage.refresh_token = this.result.refresh_token;
 

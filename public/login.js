@@ -116,6 +116,7 @@ __webpack_require__.r(__webpack_exports__);
           if (_this.result.token_type != null) {
             // handle login
             localStorage.token_type = _this.result.token_type;
+            localStorage.expires_in = _this.result.expires_in;
             localStorage.access_token = _this.result.access_token;
             localStorage.refresh_token = _this.result.refresh_token;
 
