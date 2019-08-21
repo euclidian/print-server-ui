@@ -83,11 +83,8 @@
                   <td>{{ props.item.real_file_name }}</td>
                   <td>{{ props.item.upload_date }}</td>
                   <td>
-                    <v-btn depressed outline icon fab dark color="success" small>
-                      <v-icon>edit</v-icon>
-                    </v-btn>
                     <v-btn depressed outline icon fab dark color="pink" small>
-                      <v-icon>delete</v-icon>
+                      <v-icon v-on:click="deleteData(props.item.num, props.item.id_template)">delete</v-icon>
                     </v-btn>
                     <v-btn depressed outline icon fab dark color="primary" small>
                       <v-icon>get_app</v-icon>
@@ -158,10 +155,42 @@ export default {
         },
         processInput: function(){
             this.$refs.myVueDropzone.processQueue();
+        },
+        //For Deleting Row
+        deleteData: function(no, template_id){
+            console.log('No = '+no);
+            console.log('Template = '+template_id);
+            this.$swal({
+                        title: 'Are you sure ?',
+                        text: "You won't be able to revert this template with id "+template_id+" !!",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.value) {
+                            var config = {
+                                body: {},
+                                headers: {'Authorization': "Bearer "+this.token}
+                            }
+                            Axios.get(this.getBaseUrl()+'/api/deleteJRXML/'+template_id, config)
+                                .then(response => {
+                                    console.log('response jalan');
+                                    console.log(response.data);
+                                    if(response.data.statusCode == 200){
+                                        this.getAllData();
+                                        this.$swal({
+                                            title: 'Template id '+template_id+' has been Deleted',
+                                            showConfirmButton: false,
+                                            timer:1500,
+                                            type: 'success'
+                                        })
+                                    }
+                                });
+                        }
+                    })
         }
-    },
-    event: {
-
     },
     watch: {
         fileStatus: function(){
@@ -192,169 +221,62 @@ export default {
     created: function(){
         this.getAllData();
     },
-  data: function() {
-    return {
-        the_file: '',
-        fileStatus: '',
-      dropzoneOptions: {
-          url: this.getBaseUrl() + '/api/addJRXML',
-          thumbnailWidth: 200,
-          maxFilesize: 2,
-          maxFiles: 1,
-          paramName: 'template',
-          headers: {
-            'Authorization': "Bearer "+this.getToken('access_token'),
-          },
-          addRemoveLinks: true,
-          acceptedFiles: '.jrxml',
-          autoProcessQueue: false,
-      },
-        dialog: false,
-      results: [],
-      hasil: {},
-      token: '',
-      url: '',
-      no: 0,
-      search: "",
-      complex: {
-        selected: [],
-        headers: [
-          {
-            text: "No",
-            value: ""
-          },
-          {
-            text: "ID Template",
-            value: "id_template"
-          },
-          {
-            text: "File Name",
-            value: "file_name"
-          },
-          {
-            text: "Real File Name",
-            value: "real_file_name"
-          },
-          {
-            text: "Upload Date",
-            value: "upload_date"
-          },
-          {
-            text: "Action",
-            value: ""
-          }
-        ],
-        items: []
-      },
-      basic: {
-        headers: [
-          {
-            text: "Dessert (100g serving)",
-            align: "left",
-            sortable: false,
-            value: "name"
-          },
-          { text: "Calories", value: "calories" },
-          { text: "Fat (g)", value: "fat" },
-          { text: "Carbs (g)", value: "carbs" },
-          { text: "Protein (g)", value: "protein" },
-          { text: "Iron (%)", value: "iron" }
-        ],
-        items: [
-          {
-            value: false,
-            name: "Frozen Yogurt",
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: "1%"
-          },
-          {
-            value: false,
-            name: "Ice cream sandwich",
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: "1%"
-          },
-          {
-            value: false,
-            name: "Eclair",
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: "7%"
-          },
-          {
-            value: false,
-            name: "Cupcake",
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: "8%"
-          },
-          {
-            value: false,
-            name: "Gingerbread",
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: "16%"
-          },
-          {
-            value: false,
-            name: "Jelly bean",
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: "0%"
-          },
-          {
-            value: false,
-            name: "Lollipop",
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: "2%"
-          },
-          {
-            value: false,
-            name: "Honeycomb",
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: "45%"
-          },
-          {
-            value: false,
-            name: "Donut",
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: "22%"
-          },
-          {
-            value: false,
-            name: "KitKat",
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: "6%"
-          }
-        ]
-      }
+    data: function() {
+        return {
+            the_file: '',
+            fileStatus: '',
+            dropzoneOptions: {
+                url: this.getBaseUrl() + '/api/addJRXML',
+                thumbnailWidth: 200,
+                maxFilesize: 2,
+                maxFiles: 1,
+                paramName: 'template',
+                headers: {
+                    'Authorization': "Bearer "+this.getToken('access_token'),
+                },
+                addRemoveLinks: true,
+                acceptedFiles: '.jrxml',
+                autoProcessQueue: false,
+            },
+            dialog: false,
+        results: [],
+        hasil: {},
+        token: '',
+        url: '',
+        no: 0,
+        search: "",
+        complex: {
+            selected: [],
+            headers: [
+            {
+                text: "No",
+                value: ""
+            },
+            {
+                text: "ID Template",
+                value: "id_template"
+            },
+            {
+                text: "File Name",
+                value: "file_name"
+            },
+            {
+                text: "Real File Name",
+                value: "real_file_name"
+            },
+            {
+                text: "Upload Date",
+                value: "upload_date"
+            },
+            {
+                text: "Action",
+                value: ""
+            }
+            ],
+            items: []
+        }
+        }
     }
-  }
 }
 </script>
 <style>
