@@ -17,6 +17,8 @@
     <script src="https://cdn.bootcss.com/echarts/4.0.4/echarts-en.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+
     <!-- Scripts -->
     <script src="{{ mix('js/main.js') }}" defer></script>
 

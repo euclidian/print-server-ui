@@ -1,19 +1,19 @@
 {
     "/js/app.js": "/js/app.js?id=f9130a7c4addc9799cb5",
     "/css/app.css": "/css/app.css?id=d41d8cd98f00b204e980",
-    "/js/main.js": "/js/main.js?id=c5b257b86839ed0492f4",
+    "/js/main.js": "/js/main.js?id=08b46e7527e1950c2386",
     "/chart-widget.js": "/chart-widget.js?id=befc1a3406b60c92a568",
     "/chat-contact.js": "/chat-contact.js?id=bba18a3d43505e1aa0d1",
     "/chat-messaging.js": "/chat-messaging.js?id=ba9706b12de16b33493a",
-    "/error-403.js": "/error-403.js?id=b4076d1936aa3c4b0a52",
+    "/dashboard.js": "/dashboard.js?id=059381e1aae560b7269f",
     "/errors-404.js": "/errors-404.js?id=cae702c0b687127684e2",
     "/errors-500.js": "/errors-500.js?id=81da55a2bf3e8b06a26c",
     "/list-widget.js": "/list-widget.js?id=a3def69c0fba717d4203",
-    "/login.js": "/login.js?id=e66ff14bd5cd573f1491",
+    "/login.js": "/login.js?id=5579028a6afa604806ec",
     "/routes.js": "/routes.js?id=f6f1706895ee38bc7087",
     "/social-widget.js": "/social-widget.js?id=c1d0e7014d760f1d9ff3",
     "/statistic-widget.js": "/statistic-widget.js?id=1d51abf94d12883dea2f",
     "/table.js": "/table.js?id=9cc609ffaf982d20624c",
     "/vendors~chart-widget.js": "/vendors~chart-widget.js?id=2767f25deadf8311b4db",
-    "/vendors~table.js": "/vendors~table.js?id=fad5337b6daae703e2b3"
+    "/vendors~dashboard~table.js": "/vendors~dashboard~table.js?id=590d6c8904517c5b081a"
 }

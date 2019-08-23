@@ -7,11 +7,11 @@ const Menu = [
     name: "Template"
   },
   {
-    title: "Chat",
+    title: "User",
     group: "apps",
-    icon: "chat_bubble",
-    target: "_blank",
-    name: "Chat"
+    icon: "supervisor_account",
+    // target: "_blank",
+    name: "User"
   },
   {
     title: "Inbox",

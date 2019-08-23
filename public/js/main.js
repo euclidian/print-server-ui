@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"chat-contact":"chat-contact","chat-messaging":"chat-messaging","error-403":"error-403","errors-404":"errors-404","errors-500":"errors-500","list-widget":"list-widget","login":"login","routes":"routes","social-widget":"social-widget","statistic-widget":"statistic-widget","vendors~chart-widget":"vendors~chart-widget","chart-widget":"chart-widget","vendors~table":"vendors~table","table":"table"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"chat-contact":"chat-contact","chat-messaging":"chat-messaging","errors-404":"errors-404","errors-500":"errors-500","list-widget":"list-widget","login":"login","routes":"routes","social-widget":"social-widget","statistic-widget":"statistic-widget","vendors~chart-widget":"vendors~chart-widget","chart-widget":"chart-widget","vendors~dashboard~table":"vendors~dashboard~table","table":"table","dashboard":"dashboard"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -53138,11 +53138,11 @@ var Menu = [{
   icon: "description",
   name: "Template"
 }, {
-  title: "Chat",
+  title: "User",
   group: "apps",
-  icon: "chat_bubble",
-  target: "_blank",
-  name: "Chat"
+  icon: "supervisor_account",
+  // target: "_blank",
+  name: "User"
 }, {
   title: "Inbox",
   group: "apps",
@@ -54892,37 +54892,6 @@ var publicRoute = [{
   }
 }];
 var protectedRoute = [{
-  path: "/dashboard",
-  component: _components_layouts__WEBPACK_IMPORTED_MODULE_0__["DefaultLayout"],
-  meta: {
-    title: "Home",
-    group: "apps",
-    icon: ""
-  },
-  redirect: "/dashboard",
-  children: [{
-    path: "/dashboard",
-    name: "Dashboard",
-    meta: {
-      title: "Welcome Admin",
-      group: "apps",
-      icon: "dashboard"
-    },
-    component: function component() {
-      return Promise.all(/*! import() | dashboard */[__webpack_require__.e("vendors~table"), __webpack_require__.e("table")]).then(__webpack_require__.bind(null, /*! ../views/list/Table.vue */ "./resources/js/components/dashboard/views/list/Table.vue"));
-    }
-  }, {
-    path: "/403",
-    name: "Forbidden",
-    meta: {
-      title: "Access Denied",
-      hiddenInMenu: true
-    },
-    component: function component() {
-      return __webpack_require__.e(/*! import() | error-403 */ "error-403").then(__webpack_require__.bind(null, /*! ../views/error/Deny.vue */ "./resources/js/components/dashboard/views/error/Deny.vue"));
-    }
-  }]
-}, {
   path: "/",
   component: _components_layouts__WEBPACK_IMPORTED_MODULE_0__["AuthLayout"],
   meta: {
@@ -54931,13 +54900,55 @@ var protectedRoute = [{
   redirect: "/login",
   hidden: true,
   children: [{
-    path: "login",
+    path: "/login",
     name: "login",
     meta: {
       title: "Login"
     },
     component: function component() {
       return __webpack_require__.e(/*! import() | login */ "login").then(__webpack_require__.bind(null, /*! ../views/auth/Login.vue */ "./resources/js/components/dashboard/views/auth/Login.vue"));
+    }
+  }]
+}, {
+  path: "/template",
+  component: _components_layouts__WEBPACK_IMPORTED_MODULE_0__["DefaultLayout"],
+  meta: {
+    title: "Home",
+    group: "apps",
+    icon: ""
+  },
+  redirect: "/template",
+  children: [{
+    path: "/template",
+    name: "Template",
+    meta: {
+      title: "Welcome Admin",
+      group: "apps",
+      icon: "dashboard"
+    },
+    component: function component() {
+      return Promise.all(/*! import() | dashboard */[__webpack_require__.e("vendors~dashboard~table"), __webpack_require__.e("table"), __webpack_require__.e("dashboard")]).then(__webpack_require__.bind(null, /*! ../views/list/Table.vue */ "./resources/js/components/dashboard/views/list/Table.vue"));
+    }
+  }]
+}, {
+  path: "/user",
+  component: _components_layouts__WEBPACK_IMPORTED_MODULE_0__["DefaultLayout"],
+  meta: {
+    title: "Home",
+    group: "apps",
+    icon: ""
+  },
+  redirect: "/user",
+  children: [{
+    path: "/user",
+    name: "User",
+    meta: {
+      title: "Welcome Admin",
+      group: "apps",
+      icon: "dashboard"
+    },
+    component: function component() {
+      return Promise.all(/*! import() | dashboard */[__webpack_require__.e("vendors~dashboard~table"), __webpack_require__.e("table"), __webpack_require__.e("dashboard")]).then(__webpack_require__.bind(null, /*! ../views/list/UserTable.vue */ "./resources/js/components/dashboard/views/list/UserTable.vue"));
     }
   }]
 }, //list
@@ -54957,7 +54968,7 @@ var protectedRoute = [{
       title: "CMS Table"
     },
     component: function component() {
-      return Promise.all(/*! import() | table */[__webpack_require__.e("vendors~table"), __webpack_require__.e("table")]).then(__webpack_require__.bind(null, /*! ../views/list/Table.vue */ "./resources/js/components/dashboard/views/list/Table.vue"));
+      return Promise.all(/*! import() | table */[__webpack_require__.e("vendors~dashboard~table"), __webpack_require__.e("table")]).then(__webpack_require__.bind(null, /*! ../views/list/Table.vue */ "./resources/js/components/dashboard/views/list/Table.vue"));
     }
   }]
 }, //widgets
