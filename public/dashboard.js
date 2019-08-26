@@ -127,6 +127,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -135,6 +174,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      form: {
+        name: '',
+        email: '',
+        password: ''
+      },
+      passConf: '',
       dialog: false,
       online_id: 0,
       result: [],
@@ -179,7 +224,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.result = response.data.data;
         var no = 0;
 
-        _this.complex.items.splice(1, _this.complex.items.length);
+        _this.complex.items.splice(0, _this.complex.items.length);
 
         for (var i = 0; i < _this.result.length; i++) {
           no = no + 1;
@@ -207,7 +252,90 @@ __webpack_require__.r(__webpack_exports__);
         console.log('Error Jalan');
         console.log(e);
       });
+    },
+    submitUser: function submitUser() {
+      var _this2 = this;
+
+      console.log(this.form);
+
+      if (this.form.name == '' || this.form.email == '' || this.form.password == '' || this.passConf == '') {
+        this.$swal({
+          title: "Oops..!!",
+          text: 'You must fill the form',
+          type: 'warning',
+          timer: 1500,
+          showConfirmButton: false
+        });
+        return;
+      }
+
+      if (this.passConf == this.form.password) {
+        if (this.form.email.indexOf('@') != -1) {
+          var config = {
+            body: {},
+            headers: {
+              'Authorization': "Bearer " + this.getToken('access_token')
+            }
+          };
+          axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(this.getBaseUrl() + '/api/addUser', this.form, config).then(function (response) {
+            console.log(_this2.response);
+
+            _this2.getAllUser();
+
+            _this2.clearForm();
+
+            _this2.$swal({
+              title: 'Yeay..!',
+              text: 'Data Has been Added',
+              showConfirmButton: false,
+              timer: 1500,
+              type: 'success'
+            });
+          })["catch"](function (e) {
+            console.log(e);
+          });
+        } else {
+          this.$swal({
+            title: "Oops..!!",
+            text: 'Email required',
+            type: 'warning',
+            timer: 1500,
+            showConfirmButton: false
+          });
+        }
+      } else {
+        this.$swal({
+          title: "Oops..!!",
+          text: 'Password does not same. Please check if your password are correct',
+          type: 'warning',
+          timer: 1500,
+          showConfirmButton: false
+        });
+      }
+    },
+    clearForm: function clearForm() {
+      this.form.name = '';
+      this.form.email = '';
+      this.form.password = '';
+      this.passConf = '';
     }
+  },
+  watch: {
+    dialog: function (_dialog) {
+      function dialog() {
+        return _dialog.apply(this, arguments);
+      }
+
+      dialog.toString = function () {
+        return _dialog.toString();
+      };
+
+      return dialog;
+    }(function () {
+      if (dialog == false) {
+        this.clearForm();
+      }
+    })
   }
 });
 
@@ -381,7 +509,7 @@ var render = function() {
                                       _c(
                                         "v-toolbar-title",
                                         { staticClass: "body-1" },
-                                        [_vm._v("Add Data")]
+                                        [_vm._v("Add User")]
                                       ),
                                       _vm._v(" "),
                                       _c("v-spacer"),
@@ -403,13 +531,155 @@ var render = function() {
                                     1
                                   ),
                                   _vm._v(" "),
-                                  _c("v-card-text", [
-                                    _vm._v(
-                                      "\n                      hello\n                  "
-                                    )
-                                  ]),
+                                  _c(
+                                    "v-card-text",
+                                    [
+                                      _c(
+                                        "v-container",
+                                        {
+                                          attrs: {
+                                            "grid-list-xl": "",
+                                            fluid: ""
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-layout",
+                                            { attrs: { row: "", wrap: "" } },
+                                            [
+                                              _c(
+                                                "v-flex",
+                                                { attrs: { md12: "" } },
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label: "Name",
+                                                      "append-icon": "person",
+                                                      required: ""
+                                                    },
+                                                    model: {
+                                                      value: _vm.form.name,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "name",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression: "form.name"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                { attrs: { md12: "" } },
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label: "Email",
+                                                      "append-icon":
+                                                        "local_post_office",
+                                                      type: "email",
+                                                      required: ""
+                                                    },
+                                                    model: {
+                                                      value: _vm.form.email,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "email",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression: "form.email"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                { attrs: { md12: "" } },
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label: "Password",
+                                                      "append-icon": "lock",
+                                                      type: "password",
+                                                      required: ""
+                                                    },
+                                                    model: {
+                                                      value: _vm.form.password,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          _vm.form,
+                                                          "password",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression:
+                                                        "form.password"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-flex",
+                                                { attrs: { md12: "" } },
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label: "Confirm Password",
+                                                      "append-icon": "lock",
+                                                      type: "password",
+                                                      required: ""
+                                                    },
+                                                    model: {
+                                                      value: _vm.passConf,
+                                                      callback: function($$v) {
+                                                        _vm.passConf = $$v
+                                                      },
+                                                      expression: "passConf"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
                                   _vm._v(" "),
-                                  _c("v-card-actions")
+                                  _c(
+                                    "v-card-actions",
+                                    [
+                                      _c("v-spacer"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            depressed: "",
+                                            color: "primary"
+                                          },
+                                          on: { click: _vm.submitUser }
+                                        },
+                                        [_vm._v("Submit")]
+                                      )
+                                    ],
+                                    1
+                                  )
                                 ],
                                 1
                               )
