@@ -33,17 +33,56 @@
 
                 <v-card>
                     <v-toolbar card prominent color="primary" dark="">
-                        <v-toolbar-title class="body-1">Add Data</v-toolbar-title>
+                        <v-toolbar-title class="body-1">Add User</v-toolbar-title>
                         <v-spacer></v-spacer>
                         <v-btn icon v-on:click="dialog = false">
                             <v-icon>close</v-icon>
                         </v-btn>
                     </v-toolbar>
                     <v-card-text>
-                        hello
+                        <v-container grid-list-xl fluid>
+                            <v-layout row wrap>
+                                <v-flex md12>
+                                    <v-text-field
+                                        label="Name"
+                                        append-icon="person"
+                                        v-model="form.name"
+                                        required
+                                    ></v-text-field>
+                                </v-flex>
+                                <v-flex md12>
+                                    <v-text-field
+                                        label="Email"
+                                        append-icon="local_post_office"
+                                        v-model="form.email"
+                                        type="email"
+                                        required
+                                    ></v-text-field>
+                                </v-flex>
+                                <v-flex md12>
+                                    <v-text-field
+                                        label="Password"
+                                        append-icon="lock"
+                                        v-model="form.password"
+                                        type="password"
+                                        required
+                                    ></v-text-field>
+                                </v-flex>
+                                <v-flex md12>
+                                    <v-text-field
+                                        label="Confirm Password"
+                                        append-icon="lock"
+                                        v-model="passConf"
+                                        type="password"
+                                        required
+                                    ></v-text-field>
+                                </v-flex>
+                            </v-layout>
+                        </v-container>
                     </v-card-text>
                     <v-card-actions>
-
+                        <v-spacer></v-spacer>
+                        <v-btn depressed color="primary" v-on:click="submitUser">Submit</v-btn>
                     </v-card-actions>
                 </v-card>
               </v-dialog>
@@ -122,6 +161,12 @@ export default {
     },
     data: function() {
         return {
+            form: {
+                name: '',
+                email: '',
+                password: ''
+            },
+            passConf: '',
             dialog: false,
             online_id: 0,
             result: [],
@@ -170,7 +215,7 @@ export default {
                     this.result = response.data.data;
 
                     var no = 0;
-                    this.complex.items.splice(1, this.complex.items.length);
+                    this.complex.items.splice(0, this.complex.items.length);
                     for(var i = 0; i < this.result.length; i++){
                         no = no + 1;
                         this.resultExtract = {
@@ -201,6 +246,74 @@ export default {
                         console.log(e);
                     })
 
+        },
+        submitUser: function(){
+            console.log(this.form);
+            if(this.form.name == '' || this.form.email == '' || this.form.password == '' || this.passConf == ''){
+                this.$swal({
+                        title: "Oops..!!",
+                        text: 'You must fill the form',
+                        type: 'warning',
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
+                return;
+            }
+            if(this.passConf == this.form.password){
+                if(this.form.email.indexOf('@') != -1){
+                    var config = {
+                        body: {},
+                        headers: {'Authorization': "Bearer "+this.getToken('access_token')}
+                    }
+                    Axios.post(this.getBaseUrl()+'/api/addUser', this.form, config)
+                        .then(response => {
+                            console.log(this.response);
+                            this.getAllUser();
+                            this.clearForm();
+                            this.$swal({
+                                title: 'Yeay..!',
+                                text: 'Data Has been Added',
+                                showConfirmButton: false,
+                                timer:1500,
+                                type: 'success'
+                            });
+                        })
+                        .catch(e =>{
+                            console.log(e);
+                        })
+                }
+                else{
+                    this.$swal({
+                        title: "Oops..!!",
+                        text: 'Email required',
+                        type: 'warning',
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
+                }
+            }
+            else{
+                this.$swal({
+                    title: "Oops..!!",
+                    text: 'Password does not same. Please check if your password are correct',
+                    type: 'warning',
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            }
+        },
+        clearForm: function(){
+            this.form.name = '';
+            this.form.email = '';
+            this.form.password = '';
+            this.passConf = '';
+        }
+    },
+    watch: {
+        dialog: function(){
+            if(dialog == false){
+                this.clearForm();
+            }
         }
     }
 }
