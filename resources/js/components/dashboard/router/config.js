@@ -19,43 +19,51 @@ export const publicRoute = [
 ]
 
 export const protectedRoute = [
-  {
-    path: "/dashboard",
-    component: DefaultLayout,
-    meta: { title: "Home", group: "apps", icon: "" },
-    redirect: "/dashboard",
-    children: [
-      {
-        path: "/dashboard",
-        name: "Dashboard",
-        meta: { title: "Welcome Admin", group: "apps", icon: "dashboard" },
-        component: () => import(/* webpackChunkName: "dashboard" */ "../views/list/Table.vue")
-      },
+    {
+      path: "/",
+      component: AuthLayout,
+      meta: { title: "Login" },
+      redirect: "/login",
+      hidden: true,
+      children: [
+        {
+          path: "/login",
+          name: "login",
+          meta: { title: "Login" },
+          component: () => import(/* webpackChunkName: "login" */ "../views/auth/Login.vue")
+        }
+      ]
+    },
 
-      {
-        path: "/403",
-        name: "Forbidden",
-        meta: { title: "Access Denied", hiddenInMenu: true },
-        component: () => import(/* webpackChunkName: "error-403" */ "../views/error/Deny.vue")
-      }
-    ]
-  },
-  {
-    path: "/",
-    component: AuthLayout,
-    meta: { title: "Login" },
-    redirect: "/login",
-    hidden: true,
-    children: [
-      {
-        path: "login",
-        name: "login",
-        meta: { title: "Login" },
-        component: () => import(/* webpackChunkName: "login" */ "../views/auth/Login.vue")
-      }
-    ]
-  },
+    {
+        path: "/template",
+        component: DefaultLayout,
+        meta: { title: "Home", group: "apps", icon: "" },
+        redirect: "/template",
+        children: [
+            {
+                path: "/template",
+                name: "Template",
+                meta: { title: "Welcome Admin", group: "apps", icon: "dashboard" },
+                component: () => import(/* webpackChunkName: "dashboard" */ "../views/list/Table.vue")
+            }
+        ]
+    },
 
+    {
+        path: "/user",
+        component: DefaultLayout,
+        meta: { title: "Home", group: "apps", icon: "" },
+        redirect: "/user",
+        children: [
+        {
+            path: "/user",
+            name: "User",
+            meta: { title: "Welcome Admin", group: "apps", icon: "dashboard" },
+            component: () => import(/* webpackChunkName: "dashboard" */ "../views/list/UserTable.vue")
+        }
+        ]
+    },
   //list
   {
     path: "/cms",

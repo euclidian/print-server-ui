@@ -106,7 +106,7 @@ export default {
                         localStorage.access_token = this.result.access_token;
                         localStorage.refresh_token = this.result.refresh_token;
 
-                        this.$router.push("/dashboard");
+                        this.$router.push("/template");
                         this.$swal({
                             text: 'Yeay..!',
                             title: 'Login Success',

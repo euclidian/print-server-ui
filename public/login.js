@@ -120,7 +120,7 @@ __webpack_require__.r(__webpack_exports__);
             localStorage.access_token = _this.result.access_token;
             localStorage.refresh_token = _this.result.refresh_token;
 
-            _this.$router.push("/dashboard");
+            _this.$router.push("/template");
 
             _this.$swal({
               text: 'Yeay..!',
